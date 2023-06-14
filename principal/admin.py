@@ -1,0 +1,20 @@
+from django.contrib import admin
+from .models import *
+
+admin.site.register(Apicultura)
+admin.site.register(Ciudad)
+admin.site.register(Cliente)
+admin.site.register(Contrato)
+admin.site.register(Cultivo)
+admin.site.register(Departamentos)
+admin.site.register(Direccion)
+admin.site.register(Infotrata)
+admin.site.register(Msensor)
+admin.site.register(Pais)
+admin.site.register(Piscicultura)
+admin.site.register(Sensor)
+admin.site.register(Tcliente)
+admin.site.register(Tdentificacion)
+admin.site.register(Tiptrata)
+admin.site.register(Tratamiento)
+admin.site.register(Tsensor)
