@@ -60,7 +60,7 @@
         <div class="page-breadcrumb">
           <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
-              <h4 class="page-title">apicultura</h4>
+              <h4 class="page-title">colmena</h4>
               <div class="ms-auto text-end">
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
@@ -80,7 +80,7 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title mb-0">Creación de apicultura</h5>
+                  <h5 class="card-title mb-0">Creación de colmena</h5>
                 </div>
                 <div class="card">
                   <div class="card-body">
@@ -192,39 +192,39 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">Lista de apicultura</h5>
+                  <h5 class="card-title">Lista de colmena</h5>
                   <div class="table-responsive">
                     <table id="zero_config" class="table table-striped table-bordered">
                       <thead>
                         <tr>
-                          <th>Código de apicultura</th>
+                          <th>Código de colmena</th>
                           <th>Nombre</th>
                           <th>Departamento</th>
                                               
                         </tr>
                       </thead>
                       <tbody>
-                        {% for apicultura in object_list %}
+                        {% for colmena in object_list %}
                           <tr>
-                            <td>{{ apicultura.id}}</td>
-                            <td>{{ apicultura.nombre}}</td>
-                            <td>{{ apicultura.feinicio}}</td>
+                            <td>{{ colmena.id}}</td>
+                            <td>{{ colmena.nombre}}</td>
+                            <td>{{ colmena.feinicio}}</td>
 
-                            <td>{{ apicultura.fefin}}</td>
-                            <td>{{ apicultura.especies}}</td>
-                            <td>{{ apicultura.cantcolmenas}}</td>
-                            <td>{{ apicultura.polifloracion}}</td>
-                            <td>{{ apicultura.medicion_sensor}}</td>
+                            <td>{{ colmena.fefin}}</td>
+                            <td>{{ colmena.especies}}</td>
+                            <td>{{ colmena.cantcolmenas}}</td>
+                            <td>{{ colmena.polifloracion}}</td>
+                            <td>{{ colmena.medicion_sensor}}</td>
                             
                                                       
                             <td>
-                              <form method="POST" action="eliminar/{{apicultura.idapicultura}}">
+                              <form method="POST" action="eliminar/{{colmena.id}}">
                                   {% csrf_token %}
                                   <div class="btn-group">
 
                                       <!-- Creamos 3 botones que son ver, Editar y Eliminar, nos sirven para gestionar nuestros registros o postres -->
-                                      <a href="detalle/{{apicultura.idapicultura}}" title="Ver" type="button" class="btn btn-success">Ver </a>
-                                      <a href="editar/{{apicultura.idapicultura}}" title="Editar" type="button" class="btn btn-primary">Editar </a>
+                                      <a href="detalle/{{colmena.id}}" title="Ver" type="button" class="btn btn-success">Ver </a>
+                                      <a href="editar/{{colmena.id}}" title="Editar" type="button" class="btn btn-primary">Editar </a>
                                       <button class="btn btn-danger" onclick="return eliminar();" type="submit">
                                         Eliminar
                                       </button>

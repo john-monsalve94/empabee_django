@@ -1,24 +1,12 @@
-
-from django.urls import path
-from .views import *
-
+from django.urls import path,include
+from .views_templates import urls as view_urls
+from .api import urls as api_urls
 
 urlpatterns = [
     
-path('parametro/',Parametros, name='leerpar'),
-#--------------------------------------------URL Apicultura ------------------------------------------------------------------------#
-    
-path('Apicultura/', ListadoApicultura.as_view(template_name = "crud/Apicultura/tables.html"), name='leerre'),
+    #rutas para las vistas de todos los cruds
+    path('views_templates/',include(view_urls)),
+    #rutas para la api
+    path('api/',include(api_urls)),
 
-# La ruta 'detalles' en donde mostraremos una página con los detalles de un Categoria o registro 
-path('Apicultura/detalle/<int:pk>', ApiculturaDetalle.as_view(template_name = "crud/Apicultura/detalle.html"), name='detallesre'),
-
-# La ruta 'actualizar' en donde mostraremos un formulario para actualizar un categoriao registro de la Base de Datos 
-path('Apicultura/editar/<int:pk>', ApiculturaActualizar.as_view(template_name = "crud/Apicultura/actualizar.html"), name='actualizarre'), 
-
-# La ruta 'eliminar' que usaremos para eliminar un Categoria o registro de la Base de Datos 
-path('Apicultura/eliminar/<int:pk>', ApiculturaEliminar.as_view(), name='crud/Apicultura/eliminar.html'),     
- #--------------------------------------------URL Apicultura ------------------------------------------------------------------------#
-  
-   
 ]

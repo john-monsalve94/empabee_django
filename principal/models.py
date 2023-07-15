@@ -8,47 +8,52 @@
 from django.db import models
 
 
-class Apicultura(models.Model):
-    nombre = models.CharField(max_length=45)
-    feinicio = models.DateField()
-    fefin = models.DateField()
-    especies = models.CharField(max_length=225)
-    cantcolmenas = models.IntegerField()
-    polifloracion = models.CharField(max_length=225)
-    medicion_sensor = models.ForeignKey('Msensor', models.DO_NOTHING)
+class AsignacionEncargado(models.Model):
+    id = models.IntegerField(primary_key=True)
+    fecha_inicial = models.CharField(max_length=45, blank=True, null=True)
+    fecha_final = models.CharField(max_length=45, blank=True, null=True)
+    persona = models.ForeignKey('Persona', models.DO_NOTHING)
+    empresa = models.ForeignKey('Empresa', models.DO_NOTHING)
 
     class Meta:
-        managed = False
-        db_table = 'apicultura'
+        managed = True
+        db_table = 'asignacion_encargado'
+
+
+class CabezaFactura(models.Model):
+    id = models.IntegerField(primary_key=True)
+    cabeza_facturacol = models.CharField(max_length=45, blank=True, null=True)
+    empresa = models.ForeignKey('Empresa', models.DO_NOTHING)
+
+    class Meta:
+        managed = True
+        db_table = 'cabeza_factura'
 
 
 class Ciudad(models.Model):
-    nombre = models.CharField(max_length=45)
-    cpostal = models.IntegerField()
-    ciudad = models.CharField(max_length=45)
+    nombre = models.CharField(max_length=45, db_comment='nombre de la ciudad')
+    codigo = models.IntegerField(db_comment='codigo de la ciudad')
+    c_postal = models.IntegerField(blank=True, null=True, db_comment='codigo postal de la ciudad')
     departamentos = models.ForeignKey('Departamentos', models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ciudad'
+        db_table_comment = 'Tabla utilizada para guardar nombres ,codigos postales y codigos de ciudad'
 
 
-class Cliente(models.Model):
-    pnombre = models.CharField(max_length=45)
-    snombre = models.CharField(max_length=45)
-    papellido = models.CharField(max_length=45)
-    sapellido = models.CharField(max_length=45)
-    genero = models.CharField(max_length=9)
-    tp_cliente = models.ForeignKey('Tcliente', models.DO_NOTHING)
-    contrato = models.ForeignKey('Contrato', models.DO_NOTHING)
-    direccion = models.ForeignKey('Direccion', models.DO_NOTHING)
-    tipo_identificacion = models.ForeignKey('Tdentificacion', models.DO_NOTHING, db_column='Tipo_identificacion_id')  # Field name made lowercase.
-    telefono = models.IntegerField()
-    correo = models.CharField(max_length=45)
+class Colmena(models.Model):
+    nombre = models.CharField(max_length=45, db_comment='Nombre: Este campo almacena el nombre o identificacin de un registro especfico relacionado con la apicultura. Puede ser el nombre de un apicultor, una granja de abejas o cualquier otro nombre que ayude a identificar la entrada en la base de datos.')
+    feinicio = models.DateField(db_comment='Fecha inicio: Este campo registra la fecha en la que comenz un evento o perodo relevante para la apicultura. Puede representar la fecha de inicio de una temporada de cosecha, el inicio de un proyecto especfico o cualquier otro evento relacionado con la apicultura.')
+    fefin = models.DateField(db_comment='Fecha final: Este campo almacena la fecha en la que termina un evento o perodo relacionado con la apicultura. Puede ser la fecha de finalizacin de una temporada de cosecha, el final de un proyecto especfico o cualquier otro evento relevante.')
+    especies = models.CharField(max_length=225, db_comment='Especies: Este campo registra las especies de abejas presentes en una ubicacin especfica. Puede incluir diferentes tipos de abejas, como Apis mellifera (abeja de la miel).\nApis mellifera: tambin conocida como abeja de la miel europea, es la especie de abeja melfera ms comnmente utilizada en la apicultura a nivel mundial.\nApis cerana: una especie de abeja melfera nativa de Asia, tambin utilizada en la apicultura en algunas regiones.\nApis dorsata: conocida como abeja gigante, es una especie de abeja melfera que se encuentra en el sudeste asitico y algunas partes de la India.\nApis florea: una especie de abeja melfera ms pequea que se encuentra en regiones de Asia y frica.\nApis andreniformis: otra especie de abeja melfera nativa de Asia.')
+    polifloracion = models.CharField(max_length=225, db_comment='Poli floracin: Este campo indica si hay poli floracin en la ubicacin o evento relacionado con la apicultura. La poli floracin se refiere a la presencia de mltiples especies de flores o plantas que proporcionan nctar y polen a las abejas. Puede ser un factor importante para el xito y la productividad de las colmenas.')
+    cultivo = models.ForeignKey('Cultivo', models.DO_NOTHING)
+    especie_abeja = models.ForeignKey('EspecieAbeja', models.DO_NOTHING)
 
     class Meta:
-        managed = False
-        db_table = 'cliente'
+        managed = True
+        db_table = 'colmena'
 
 
 class Contrato(models.Model):
@@ -57,75 +62,87 @@ class Contrato(models.Model):
     monto = models.DecimalField(max_digits=10, decimal_places=2)
     forma_pago = models.CharField(max_length=45)
     cultivo = models.ForeignKey('Cultivo', models.DO_NOTHING)
+    t_contrato = models.ForeignKey('TContrato', models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'contrato'
 
 
-class Cultivo(models.Model):
-    descripcion = models.CharField(max_length=200)
-    piscicultura = models.ForeignKey('Piscicultura', models.DO_NOTHING)
-    apicultura = models.ForeignKey(Apicultura, models.DO_NOTHING)
+class CuerpoFactura(models.Model):
+    id = models.IntegerField(primary_key=True)
+    contrato = models.ForeignKey(Contrato, models.DO_NOTHING)
+    cabeza_factura = models.ForeignKey(CabezaFactura, models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
+        db_table = 'cuerpo_factura'
+
+
+class Cultivo(models.Model):
+    nombre_cultivo = models.CharField(max_length=200)
+
+    class Meta:
+        managed = True
         db_table = 'cultivo'
 
 
 class Departamentos(models.Model):
-    nombre = models.CharField(max_length=45)
+    nombre = models.CharField(max_length=45, db_comment='nombre del departamento')
+    codigo = models.IntegerField(db_comment='codigo del departamento')
     pais = models.ForeignKey('Pais', models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'departamentos'
-
+        db_table_comment = 'Tabla usada para guardar nombres de departamentos'
+        
 
 class Direccion(models.Model):
-    calle = models.CharField(max_length=45, blank=True, null=True)
+    calle = models.CharField(max_length=45)
     carrera = models.CharField(max_length=45, blank=True, null=True)
     numero = models.CharField(max_length=45, blank=True, null=True)
     descripcion = models.TextField(blank=True, null=True)
     ciudad = models.ForeignKey(Ciudad, models.DO_NOTHING)
+    ciudad_departamentos_id = models.IntegerField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'direccion'
+        db_table_comment = 'esta tabla guarda las direcciones donde puedes encontrar una empresa'
 
 
-class Infotrata(models.Model):
-    nombre = models.TextField()
-    feinicio = models.DateField()
-    fefin = models.DateField()
-
-    class Meta:
-        managed = False
-        db_table = 'infotrata'
-
-
-class Msensor(models.Model):
-    fechahora = models.DateTimeField()
-    valor = models.DecimalField(max_digits=10, decimal_places=2)
-    sensor = models.ForeignKey('Sensor', models.DO_NOTHING)
+class Empresa(models.Model):
+    id = models.IntegerField(primary_key=True)
+    nombre = models.CharField(max_length=45, blank=True, null=True)
+    nit = models.CharField(max_length=45, blank=True, null=True)
+    direccion = models.ForeignKey(Direccion, models.DO_NOTHING)
+    t_empresa = models.ForeignKey('TEmpresa', models.DO_NOTHING)
 
     class Meta:
-        managed = False
-        db_table = 'msensor'
-        
-    # def __str__(self) -> str:
-    #     return self
+        managed = True
+        db_table = 'empresa'
+    
 
-
-class Pais(models.Model):
+class EspecieAbeja(models.Model):
     nombre = models.CharField(max_length=45)
+    descripcion = models.TextField()
 
     class Meta:
-        managed = False
-        db_table = 'pais'
+        managed = True
+        db_table = 'especie_abeja'
 
 
-class Piscicultura(models.Model):
+class EspeciePez(models.Model):
+    nombre = models.CharField(max_length=45)
+    descripcion = models.CharField(max_length=45)
+
+    class Meta:
+        managed = True
+        db_table = 'especie_pez'
+
+
+class Estanque(models.Model):
     nombre = models.CharField(max_length=45)
     feinicio = models.DateField()
     fefinal = models.DateField()
@@ -134,11 +151,136 @@ class Piscicultura(models.Model):
     alimentacion = models.CharField(max_length=150)
     frecualimentacion = models.CharField(max_length=150)
     tiemcultivo = models.IntegerField()
-    medicion_sensor = models.ForeignKey(Msensor, models.DO_NOTHING)
+    cultivo = models.ForeignKey(Cultivo, models.DO_NOTHING)
+    especie_pez = models.ForeignKey(EspeciePez, models.DO_NOTHING)
 
     class Meta:
-        managed = False
-        db_table = 'piscicultura'
+        managed = True
+        db_table = 'estanque'
+
+
+class InfotrataColmena(models.Model):
+    nombre = models.TextField()
+    f_inicio = models.DateField()
+    f_fin = models.DateField(blank=True, null=True)
+    infotrata_colmenacol = models.IntegerField(blank=True, null=True)
+    colmena = models.ForeignKey(Colmena, models.DO_NOTHING)
+
+    class Meta:
+        managed = True
+        db_table = 'infotrata_colmena'
+
+
+class InfotrataEstanque(models.Model):
+    nombre = models.TextField()
+    f_inicio = models.DateField()
+    f_fin = models.DateField()
+    tratamiento = models.ForeignKey('Tratamiento', models.DO_NOTHING)
+    estanque_id = models.IntegerField()
+    estanque_id1 = models.ForeignKey(Estanque, models.DO_NOTHING, db_column='estanque_id1')
+
+    class Meta:
+        managed = True
+        db_table = 'infotrata_estanque'
+        unique_together = (('id', 'estanque_id'),)
+
+class MSensorColmena(models.Model):
+    fechahora = models.DateTimeField()
+    valor = models.DecimalField(max_digits=10, decimal_places=2)
+    sensor = models.ForeignKey('Sensor', models.DO_NOTHING)
+    colmena = models.ForeignKey(Colmena, models.DO_NOTHING)
+
+    class Meta:
+        managed = True
+        db_table = 'm_sensor_colmena'
+    
+    def __str__(self) -> str:
+        return self.fechahora
+
+
+class MSensorEstanque(models.Model):
+    fechahora = models.DateTimeField()
+    valor = models.DecimalField(max_digits=10, decimal_places=2)
+    sensor = models.ForeignKey('Sensor', models.DO_NOTHING)
+    estanque = models.ForeignKey(Estanque, models.DO_NOTHING)
+
+    class Meta:
+        managed = True
+        db_table = 'm_sensor_estanque'
+
+
+class Pais(models.Model):
+    nombre = models.CharField(max_length=45, db_comment='nombre del pais')
+    codigo = models.IntegerField(db_comment='Codigo del pais')
+
+    class Meta:
+        managed = True
+        db_table = 'pais'
+        db_table_comment = 'Tabla usada para guardar nombres de paises'
+    
+    def __str__(self) -> str:
+        return self.nombre
+
+
+class Persona(models.Model):
+    p_nombre = models.CharField(max_length=45, db_comment='primer nombre de la persona, este campo es obligatorio')
+    s_nombre = models.CharField(max_length=45, blank=True, null=True, db_comment='segundo nombre de la persona')
+    p_apellido = models.CharField(max_length=45, db_comment='primer apellido  de la persona, este campo es obligatorio')
+    s_apellido = models.CharField(max_length=45, blank=True, null=True, db_comment='segundo apellido de la persona')
+    genero = models.CharField(max_length=9, db_comment='Este campo contiene los generos por los que se puede registrar una persona')
+    telefono = models.IntegerField(db_comment='telefono usado para ponerse en contacto con la persona')
+    correo = models.CharField(max_length=120, db_comment='correo usado para ponerse en contacto con la persona')
+    n_identificacion = models.IntegerField(db_comment='numero de identificacion de la persona, usado para identificar a una persona a nivel de pais')
+    ciudad_residencia = models.ForeignKey(Ciudad, models.DO_NOTHING, db_comment='id de la ciudad en la que actualmente esta residiendo la persona')
+    ciudad_nacimiento = models.ForeignKey(Ciudad, models.DO_NOTHING, related_name='persona_ciudad_nacimiento_set')
+    t_identificacion = models.ForeignKey('TIdentificacion', models.DO_NOTHING)
+
+    class Meta:
+        managed = True
+        db_table = 'persona'
+        db_table_comment = 'tabla para guardar los datos de las personas'
+
+
+class ProduccionColmena(models.Model):
+    idproduccion_colmena = models.AutoField(primary_key=True)
+    cant_miel = models.FloatField(blank=True, null=True)
+    f_inicio = models.CharField(max_length=45, blank=True, null=True)
+    colmena = models.ForeignKey(Colmena, models.DO_NOTHING)
+
+    class Meta:
+        managed = True
+        db_table = 'produccion_colmena'
+
+
+class ProduccionEstanque(models.Model):
+    idproduccion_colmena = models.AutoField(primary_key=True)
+    cant_peces = models.FloatField(blank=True, null=True)
+    f_inicio = models.CharField(max_length=45, blank=True, null=True)
+    estanque = models.ForeignKey(Estanque, models.DO_NOTHING)
+
+    class Meta:
+        managed = True
+        db_table = 'produccion_estanque'
+
+
+class ReporteColmena(models.Model):
+    fecha = models.DateField(blank=True, null=True)
+    descripcion = models.CharField(max_length=45)
+    infotrata_colmena = models.ForeignKey(InfotrataColmena, models.DO_NOTHING)
+
+    class Meta:
+        managed = True
+        db_table = 'reporte_colmena'
+
+
+class ReporteEstanque(models.Model):
+    fecha = models.DateField(blank=True, null=True)
+    descripcion = models.CharField(max_length=45)
+    infotrata_estanque = models.ForeignKey(InfotrataEstanque, models.DO_NOTHING)
+
+    class Meta:
+        managed = True
+        db_table = 'reporte_estanque'
 
 
 class Sensor(models.Model):
@@ -148,26 +290,38 @@ class Sensor(models.Model):
     tipo_sensor = models.ForeignKey('Tsensor', models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'sensor'
 
 
-class Tcliente(models.Model):
-    nombre = models.CharField(max_length=45)
-    descripcion = models.CharField(max_length=200)
+class TContrato(models.Model):
+    id = models.IntegerField(primary_key=True)
+    nombre = models.CharField(max_length=45, blank=True, null=True)
+    desc = models.CharField(max_length=45, blank=True, null=True)
 
     class Meta:
-        managed = False
-        db_table = 'tcliente'
+        managed = True
+        db_table = 't_contrato'
 
 
-class Tdentificacion(models.Model):
-    nombre = models.CharField(max_length=45)
-    descripcion = models.CharField(max_length=45)
+class TEmpresa(models.Model):
+    id = models.IntegerField(primary_key=True)
+    nombre = models.CharField(max_length=45, blank=True, null=True)
+    desc = models.CharField(max_length=45, blank=True, null=True)
 
     class Meta:
-        managed = False
-        db_table = 'tdentificacion'
+        managed = True
+        db_table = 't_empresa'
+
+
+class TIdentificacion(models.Model):
+    nombre = models.CharField(max_length=45, db_comment='nombre del tipo de identificacion')
+    descripcion = models.TextField(blank=True, null=True, db_comment='descripcion del tipo de identificacion')
+
+    class Meta:
+        managed = True
+        db_table = 't_identificacion'
+        db_table_comment = 'Tabla para guardar el nombre de los distintos tipos de identificacion, por ejemplo cedula de extranjeria , cedula de ciudadania etc '
 
 
 class Tiptrata(models.Model):
@@ -175,7 +329,7 @@ class Tiptrata(models.Model):
     descripcion = models.TextField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'tiptrata'
 
 
@@ -183,15 +337,12 @@ class Tratamiento(models.Model):
     fecha_aplicacion = models.DateField()
     dosis = models.FloatField()
     resultado = models.CharField(max_length=250)
-    apicultura = models.ForeignKey(Apicultura, models.DO_NOTHING)
-    informacion_tratamiento = models.ForeignKey(Infotrata, models.DO_NOTHING)
     tipo_tratamiento = models.ForeignKey(Tiptrata, models.DO_NOTHING)
-    piscicultura = models.ForeignKey(Piscicultura, models.DO_NOTHING)
+    infotrata_colmena = models.ForeignKey(InfotrataColmena, models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'tratamiento'
-        unique_together = (('id', 'apicultura', 'informacion_tratamiento', 'piscicultura'),)
 
 
 class Tsensor(models.Model):
@@ -199,5 +350,5 @@ class Tsensor(models.Model):
     descripcion = models.CharField(max_length=150)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'tsensor'
