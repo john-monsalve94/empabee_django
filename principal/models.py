@@ -3,7 +3,7 @@
 #   * Rearrange models' order
 #   * Make sure each model has one field with primary_key=True
 #   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
-#   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
+#   * Remove `managed = True` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
@@ -18,7 +18,7 @@ class Apicultura(models.Model):
     medicion_sensor = models.ForeignKey('Msensor', models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'apicultura'
 
 
@@ -29,7 +29,7 @@ class Ciudad(models.Model):
     departamentos = models.ForeignKey('Departamentos', models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'ciudad'
 
 
@@ -47,7 +47,7 @@ class Cliente(models.Model):
     correo = models.CharField(max_length=45)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'cliente'
 
 
@@ -59,7 +59,7 @@ class Contrato(models.Model):
     cultivo = models.ForeignKey('Cultivo', models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'contrato'
 
 
@@ -69,7 +69,7 @@ class Cultivo(models.Model):
     apicultura = models.ForeignKey(Apicultura, models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'cultivo'
 
 
@@ -78,7 +78,7 @@ class Departamentos(models.Model):
     pais = models.ForeignKey('Pais', models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'departamentos'
 
 
@@ -90,7 +90,7 @@ class Direccion(models.Model):
     ciudad = models.ForeignKey(Ciudad, models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'direccion'
 
 
@@ -100,7 +100,7 @@ class Infotrata(models.Model):
     fefin = models.DateField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'infotrata'
 
 
@@ -110,18 +110,19 @@ class Msensor(models.Model):
     sensor = models.ForeignKey('Sensor', models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'msensor'
         
-    # def __str__(self) -> str:
-    #     return self
+    def __str__(self) -> str:
+        txt="{0}"
+        return txt.format(self.valor)
 
 
 class Pais(models.Model):
     nombre = models.CharField(max_length=45)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'pais'
 
 
@@ -137,7 +138,7 @@ class Piscicultura(models.Model):
     medicion_sensor = models.ForeignKey(Msensor, models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'piscicultura'
 
 
@@ -148,7 +149,7 @@ class Sensor(models.Model):
     tipo_sensor = models.ForeignKey('Tsensor', models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'sensor'
 
 
@@ -157,7 +158,7 @@ class Tcliente(models.Model):
     descripcion = models.CharField(max_length=200)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'tcliente'
 
 
@@ -166,7 +167,7 @@ class Tdentificacion(models.Model):
     descripcion = models.CharField(max_length=45)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'tdentificacion'
 
 
@@ -175,7 +176,7 @@ class Tiptrata(models.Model):
     descripcion = models.TextField()
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'tiptrata'
 
 
@@ -189,7 +190,7 @@ class Tratamiento(models.Model):
     piscicultura = models.ForeignKey(Piscicultura, models.DO_NOTHING)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'tratamiento'
         unique_together = (('id', 'apicultura', 'informacion_tratamiento', 'piscicultura'),)
 
@@ -199,5 +200,5 @@ class Tsensor(models.Model):
     descripcion = models.CharField(max_length=150)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'tsensor'
