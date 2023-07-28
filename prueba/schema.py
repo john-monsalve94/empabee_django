@@ -64,7 +64,7 @@ class UpdatePaisMutation(graphene.Mutation):
         return UpdatePaisMutation(pais = pais)
     
 class Query(graphene.ObjectType):
-    traer_paises = graphene.List(PaisType)
+    paises = graphene.List(PaisType)
     pais = graphene.Field(PaisType,id=graphene.ID())
     
     def resolve_paises(self, info):
