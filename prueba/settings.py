@@ -32,7 +32,7 @@ SECRET_KEY = 'django-insecure-esk$rh$-um_t0i4v+_^d9hhokx)v#glc#medj!u+z1i4nvpw+7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -132,7 +132,8 @@ AUTHENTICATION_BACKENDS = [
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
 
-LOGIN_REDIRECT_URL = 'index'
+LOGIN_REDIRECT_URL = 'dashboard'
+LOGIN_URL = 'login'
 
 LANGUAGE_CODE = 'es-es'
 
