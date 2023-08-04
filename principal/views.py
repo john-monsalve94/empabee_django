@@ -10,8 +10,8 @@ def home(request):
     return render(request,'home/index.html')
 
 #pantalla de login
-def login():
-    return redirect('login')
+def login(request):
+    return redirect(request,'login')
      
 #pantalla de registro
 def register(request):
