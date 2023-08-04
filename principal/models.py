@@ -33,7 +33,8 @@ class CabezaFactura(models.Model):
 class Ciudad(models.Model):
     nombre = models.CharField(max_length=45, db_comment='nombre de la ciudad')
     codigo = models.IntegerField(db_comment='codigo de la ciudad')
-    c_postal = models.IntegerField(blank=True, null=True, db_comment='codigo postal de la ciudad')
+    c_postal = models.IntegerField(
+        blank=True, null=True, db_comment='codigo postal de la ciudad')
     departamentos = models.ForeignKey('Departamentos', models.DO_NOTHING)
 
     class Meta:
@@ -88,7 +89,8 @@ class Cultivo(models.Model):
 
 
 class Departamentos(models.Model):
-    nombre = models.CharField(max_length=45, db_comment='nombre del departamento')
+    nombre = models.CharField(
+        max_length=45, db_comment='nombre del departamento')
     codigo = models.IntegerField(db_comment='codigo del departamento')
     pais = models.ForeignKey('Pais', models.DO_NOTHING)
 
@@ -96,7 +98,7 @@ class Departamentos(models.Model):
         managed = True
         db_table = 'departamentos'
         db_table_comment = 'Tabla usada para guardar nombres de departamentos'
-        
+
 
 class Direccion(models.Model):
     calle = models.CharField(max_length=45)
@@ -122,7 +124,11 @@ class Empresa(models.Model):
     class Meta:
         managed = True
         db_table = 'empresa'
-    
+
+
+def __str__(self) -> str:
+    return self.p_nombre
+
 
 class EspecieAbeja(models.Model):
     nombre = models.CharField(max_length=45)
@@ -177,12 +183,14 @@ class InfotrataEstanque(models.Model):
     f_fin = models.DateField()
     tratamiento = models.ForeignKey('Tratamiento', models.DO_NOTHING)
     estanque_id = models.IntegerField()
-    estanque_id1 = models.ForeignKey(Estanque, models.DO_NOTHING, db_column='estanque_id1')
+    estanque_id1 = models.ForeignKey(
+        Estanque, models.DO_NOTHING, db_column='estanque_id1')
 
     class Meta:
         managed = True
         db_table = 'infotrata_estanque'
         unique_together = (('id', 'estanque_id'),)
+
 
 class MSensorColmena(models.Model):
     fechahora = models.DateTimeField()
@@ -193,7 +201,7 @@ class MSensorColmena(models.Model):
     class Meta:
         managed = True
         db_table = 'm_sensor_colmena'
-    
+
     def __str__(self) -> str:
         return self.fechahora
 
@@ -217,28 +225,42 @@ class Pais(models.Model):
         managed = True
         db_table = 'pais'
         db_table_comment = 'Tabla usada para guardar nombres de paises'
-    
+
     def __str__(self) -> str:
         return self.nombre
 
 
 class Persona(models.Model):
-    p_nombre = models.CharField(max_length=45, db_comment='primer nombre de la persona, este campo es obligatorio')
-    s_nombre = models.CharField(max_length=45, blank=True, null=True, db_comment='segundo nombre de la persona')
-    p_apellido = models.CharField(max_length=45, db_comment='primer apellido  de la persona, este campo es obligatorio')
-    s_apellido = models.CharField(max_length=45, blank=True, null=True, db_comment='segundo apellido de la persona')
-    genero = models.CharField(max_length=9, db_comment='Este campo contiene los generos por los que se puede registrar una persona')
-    telefono = models.IntegerField(db_comment='telefono usado para ponerse en contacto con la persona')
-    correo = models.CharField(max_length=120, db_comment='correo usado para ponerse en contacto con la persona')
-    n_identificacion = models.IntegerField(db_comment='numero de identificacion de la persona, usado para identificar a una persona a nivel de pais')
-    ciudad_residencia = models.ForeignKey(Ciudad, models.DO_NOTHING, db_comment='id de la ciudad en la que actualmente esta residiendo la persona')
-    ciudad_nacimiento = models.ForeignKey(Ciudad, models.DO_NOTHING, related_name='persona_ciudad_nacimiento_set')
+    p_nombre = models.CharField(
+        max_length=45, db_comment='primer nombre de la persona, este campo es obligatorio')
+    s_nombre = models.CharField(
+        max_length=45, blank=True, null=True, db_comment='segundo nombre de la persona')
+    p_apellido = models.CharField(
+        max_length=45, db_comment='primer apellido  de la persona, este campo es obligatorio')
+    s_apellido = models.CharField(
+        max_length=45, blank=True, null=True, db_comment='segundo apellido de la persona')
+    genero = models.CharField(
+        max_length=9, db_comment='Este campo contiene los generos por los que se puede registrar una persona')
+    telefono = models.IntegerField(
+        db_comment='telefono usado para ponerse en contacto con la persona')
+    correo = models.CharField(
+        max_length=120, db_comment='correo usado para ponerse en contacto con la persona')
+    n_identificacion = models.IntegerField(
+        db_comment='numero de identificacion de la persona, usado para identificar a una persona a nivel de pais')
+    ciudad_residencia = models.ForeignKey(
+        Ciudad, models.DO_NOTHING, db_comment='id de la ciudad en la que actualmente esta residiendo la persona')
+    ciudad_nacimiento = models.ForeignKey(
+        Ciudad, models.DO_NOTHING, related_name='persona_ciudad_nacimiento_set')
     t_identificacion = models.ForeignKey('TIdentificacion', models.DO_NOTHING)
 
     class Meta:
         managed = True
         db_table = 'persona'
         db_table_comment = 'tabla para guardar los datos de las personas'
+
+
+def __str__(self) -> str:
+    return self.p_nombre
 
 
 class ProduccionColmena(models.Model):
@@ -276,7 +298,8 @@ class ReporteColmena(models.Model):
 class ReporteEstanque(models.Model):
     fecha = models.DateField(blank=True, null=True)
     descripcion = models.CharField(max_length=45)
-    infotrata_estanque = models.ForeignKey(InfotrataEstanque, models.DO_NOTHING)
+    infotrata_estanque = models.ForeignKey(
+        InfotrataEstanque, models.DO_NOTHING)
 
     class Meta:
         managed = True
@@ -315,8 +338,10 @@ class TEmpresa(models.Model):
 
 
 class TIdentificacion(models.Model):
-    nombre = models.CharField(max_length=45, db_comment='nombre del tipo de identificacion')
-    descripcion = models.TextField(blank=True, null=True, db_comment='descripcion del tipo de identificacion')
+    nombre = models.CharField(
+        max_length=45, db_comment='nombre del tipo de identificacion')
+    descripcion = models.TextField(
+        blank=True, null=True, db_comment='descripcion del tipo de identificacion')
 
     class Meta:
         managed = True

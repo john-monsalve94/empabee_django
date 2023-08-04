@@ -11,14 +11,14 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-import os 
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-STATICFILES_DIRS=(
+STATICFILES_DIRS = (
 
-    os.path.join(BASE_DIR,'static'),
+    os.path.join(BASE_DIR, 'static'),
 )
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
@@ -87,13 +87,13 @@ WSGI_APPLICATION = 'prueba.wsgi.application'
 
 DATABASES = {
     'default': {
-        
+
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'empabee',
-        'USER':'root',
-        'PASSWORD':'Admin1234*',
-        'PORT':'3307',
-        'HOST':'127.0.0.1',
+        'NAME': 'empabee2',
+        'USER': 'root',
+        'PASSWORD': 'Admin1234*',
+        'PORT': '3306',
+        'HOST': '127.0.0.1',
     }
 }
 
