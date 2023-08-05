@@ -33,7 +33,10 @@ body {
 }
 
 fieldset{
+    border-bottom: none;
     border-right: none;
+    border-top: none;
+    border-left: none;
 }
 
 .avatar {

@@ -241,8 +241,8 @@ class Persona(models.Model):
         max_length=45, blank=True, null=True, db_comment='segundo apellido de la persona')
     genero = models.CharField(
         max_length=9, db_comment='Este campo contiene los generos por los que se puede registrar una persona')
-    telefono = models.IntegerField(
-        db_comment='telefono usado para ponerse en contacto con la persona')
+    telefono = models.CharField(
+        max_length=45, blank=True, null=True, db_comment='telefono usado para ponerse en contacto con la persona')
     correo = models.CharField(
         max_length=120, db_comment='correo usado para ponerse en contacto con la persona')
     n_identificacion = models.IntegerField(
@@ -252,7 +252,7 @@ class Persona(models.Model):
     ciudad_nacimiento = models.ForeignKey(
         Ciudad, models.DO_NOTHING, related_name='persona_ciudad_nacimiento_set')
     t_identificacion = models.ForeignKey('TIdentificacion', models.DO_NOTHING)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User,null=True, on_delete=models.SET_NULL)
 
     class Meta:
         managed = True
@@ -347,7 +347,9 @@ class TIdentificacion(models.Model):
         db_table = 't_identificacion'
         db_table_comment = 'Tabla para guardar el nombre de los distintos tipos de identificacion, por ejemplo cedula de extranjeria , cedula de ciudadania etc '
 
-
+    def __str__(self) -> str:
+        return self.nombre
+    
 class Tiptrata(models.Model):
     nombre = models.TextField()
     descripcion = models.TextField()
