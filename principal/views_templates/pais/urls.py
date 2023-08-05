@@ -11,7 +11,8 @@ urlpatterns = [
          PaisDetalle.as_view(template_name="crud/pais/detalle.html"), name='detallePais'),
     path('editar/<int:pk>', PaisActualizar.as_view(template_name="crud/pais/actualizar.html"),
          name='actualizarPais'),
-    path('crear', PaisCrear.as_view(), name='crearPais'),
-    path('eliminar/<int:pk>', PaisEliminar.as_view(), name='eliminarPais')
+    path('crear', PaisCrear.as_view(
+        template_name="crud/pais/tables.html"), name='crearPais'),
+    path('eliminar/<int:pk>', PaisEliminar.as_view(), name='crud/eliminarPais')
 
 ]
