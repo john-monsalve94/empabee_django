@@ -135,10 +135,10 @@ class Empresa(models.Model):
     class Meta:
         managed = True
         db_table = 'empresa'
-    
+
     def __str__(self) -> str:
         return self.nombre
-    
+
 
 class EspecieAbeja(models.Model):
     nombre = models.CharField(max_length=45)
@@ -307,9 +307,10 @@ class Persona(models.Model):
         managed = True
         db_table = 'persona'
         db_table_comment = 'tabla para guardar los datos de las personas'
-        
+
     def __str__(self) -> str:
         return self.p_nombre
+
 
 class ProduccionColmena(models.Model):
     idproduccion_colmena = models.AutoField(primary_key=True)

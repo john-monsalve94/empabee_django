@@ -88,7 +88,8 @@
                         <div class="card-bodys">
 
 
-                          <form method="post" enctype="multipart/form-data">
+                          <form method="post" action="{% url 'crearAsignacionEncargado' %}"
+                            enctype="multipart/form-data">
 
                             {# Pasamos el 'csrf_token' de seguridad para poder crear un nuevo registro #}
                             {% csrf_token %}
