@@ -60,13 +60,13 @@
         <div class="page-breadcrumb">
           <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
-              <h4 class="page-title">colmena</h4>
+              <h4 class="page-title">Persona</h4>
               <div class="ms-auto text-end">
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">CRUD</a></li>
                     <li class="breadcrumb-item active" aria-current="page">
-                      Apicultura
+                      Persona
                     </li>
                   </ol>
                 </nav>
@@ -80,7 +80,7 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title mb-0">Creación de colmena</h5>
+                  <h5 class="card-title mb-0">Creación de persona</h5>
                 </div>
                 <div class="card">
                   <div class="card-body">
@@ -99,57 +99,82 @@
                                       
                                       <!-- {{ form.as_p }} -->
                                       <tr class="espacio">
-                                        
-                                          <td >
+                                        <td >
                                               
                                               <div class="col-lg-7">
-                                                  <label for="nombre" >Nombre</label>
-                                                  {{ form.nombre}} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto -->
+                                                  <label for="p_nombre">Primer nombre</label>
+                                                  {{ form.p_nombre}} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto -->
                                               </div>
                                           </td>
                                           <td >
                                               
                                               <div class="col-lg-7" >
-                                                  <label for="feinicio" >Fecha de inicio</label>
-                                                  {{ form.feinicio}} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
+                                                  <label for="s_nombre">Segundo nombre</label>
+                                                  {{ form.s_nombre  }} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
                                               </div>
                                           </td>
-                                          <td>
+                                          <td >
                                               
-                                              <div class="col-lg-7">
-                                                  <label for="fefin" >Fecha final</label>
-                                                  {{ form.fefin}} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
+                                              <div class="col-lg-7" >
+                                                  <label for="p_apellido">Primer apellido</label>
+                                                  {{ form.p_apellido  }} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
                                               </div>
                                           </td>
-
-
-
-                                          <td>
+                                          <td >
                                               
-                                              <div class="col-lg-7">
-                                                  <label for="especies" >Especies</label>
-                                                  {{ form.especies}} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
-                                              </div>
-                                          </td>  
-                                          <td>
-                                              
-                                              <div class="col-lg-7">
-                                                  <label for="cantcolmenas" >Cantidad de colmenas</label>
-                                                  {{ form.cantcolmenas}} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
+                                              <div class="col-lg-7" >
+                                                  <label for="s_apellido">Segundo apellido</label>
+                                                  {{ form.s_apellido  }} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
                                               </div>
                                           </td>
-                                          <td>
+                                          <td >
                                               
-                                              <div class="col-lg-7">
-                                                  <label for="polifloracion" >Polinizacion</label>
-                                                  {{ form.polifloracion}} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
+                                              <div class="col-lg-7" >
+                                                  <label for="genero">Genero</label>
+                                                  {{ form.genero  }} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
                                               </div>
                                           </td>
-                                          <td>
+                                          <td >
                                               
-                                              <div class="col-lg-7">
-                                                  <label for="medicion_sensor" >Medicion del sensor</label>
-                                                  {{ form.medicion_sensor}} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
+                                              <div class="col-lg-7" >
+                                                  <label for="telefono">Telefono</label>
+                                                  {{ form.telefono  }} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
+                                              </div>
+                                          </td>
+                                          <td >
+                                              
+                                              <div class="col-lg-7" >
+                                                  <label for="correo">Correo</label>
+                                                  {{ form.correo  }} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
+                                              </div>
+                                          </td>
+                                        
+                                          <td >
+                                              
+                                              <div class="col-lg-7" >
+                                                  <label for="n_identificacion">Número de identificación</label>
+                                                  {{ form.n_identificacion  }} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
+                                              </div>
+                                          </td>
+                                          <td >
+                                              
+                                              <div class="col-lg-7" >
+                                                  <label for="ciudad_nacimiento">Ciudad de nacimiento</label>
+                                                  {{ form.ciudad_nacimiento  }} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
+                                              </div>
+                                          </td>
+                                          <td >
+                                              
+                                              <div class="col-lg-7" >
+                                                  <label for="ciudad_residencia">Ciuda de residencia</label>
+                                                  {{ form.ciudad_residencia  }} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
+                                              </div>
+                                          </td>
+                                          <td >
+                                              
+                                              <div class="col-lg-7" >
+                                                  <label for="t_identificacion">Tipo de identificación</label>
+                                                  {{ form.t_identificacion  }} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
                                               </div>
                                           </td>
 
@@ -191,45 +216,49 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">Lista de colmena</h5>
+                  <h5 class="card-title">Lista de persona</h5>
                   <div class="table-responsive">
                     <table id="zero_config" class="table table-striped table-bordered">
                       <thead>
                         <tr>
-                          <th>Código de colmena</th>
-                          <th>Nombre</th>
-                          <th>Fecha de inicio</th>
-                          <th>Fecha de final</th>
-
-
-                          <th>Especies</th>
-                          <th>Cantidad colmenas</th>
-                          <th>Polifloracion</th>
-                          <th>Medicion de sensor</th>                                       
+                          <th>Código de persona</th>
+                          <th>Primer nombre</th>
+                          <th>Segundo nombre</th>     
+                          <th>Primer apellido</th>
+                          <th>Segundo apellido</th> 
+                          <th>Genero</th>
+                          <th>Telefono</th> 
+                          <th>Correo</th>
+                          <th>Número de identificación</th> 
+                          <th>Ciudad de nacimiento</th>
+                          <th>Ciudad de residencia</th>                                       
                         </tr>
                       </thead>
                       <tbody>
-                        {% for colmena in object_list %}
+                        {% for persona in object_list %}
                           <tr>
-                            <td>{{ colmena.id}}</td>
-                            <td>{{ colmena.nombre}}</td>
-                            <td>{{ colmena.feinicio}}</td>
-
-                            <td>{{ colmena.fefin}}</td>
-                            <td>{{ colmena.especies}}</td>
-                            <td>{{ colmena.cantcolmenas}}</td>
-                            <td>{{ colmena.polifloracion}}</td>
-                            <td>{{ colmena.medicion_sensor}}</td>
+                            <td>{{ persona.id}}</td>
+                            <td>{{ persona.p_nombre}}</td>
+                            <td>{{ persona.s_nombre}}</td>     
+                            <td>{{ persona.p_apellido}}</td>
+                            <td>{{ persona.s_apellido}}</td>  
+                            <td>{{ persona.genero}}</td>
+                            <td>{{ persona.telefono}}</td>  
+                            <td>{{ persona.correo}}</td>
+                            <td>{{ persona.n_identificacion}}</td>  
+                            <td>{{ persona.ciudad_nacimiento}}</td>
+                            <td>{{ persona.ciudad_residencia}}</td>  
+                            <td>{{ persona.t_identicicacion}}</td>  
                             
                                                       
                             <td>
-                              <form method="POST" action="eliminar/{{colmena.id}}">
+                              <form method="POST" action="eliminar/{{persona.id}}">
                                   {% csrf_token %}
                                   <div class="btn-group">
 
                                       <!-- Creamos 3 botones que son ver, Editar y Eliminar, nos sirven para gestionar nuestros registros o postres -->
-                                      <a href="detalle/{{colmena.id}}" title="Ver" type="button" class="btn btn-success">Ver </a>
-                                      <a href="editar/{{colmena.id}}" title="Editar" type="button" class="btn btn-primary">Editar </a>
+                                      <a href="detalle/{{persona.id}}" title="Ver" type="button" class="btn btn-success">Ver </a>
+                                      <a href="editar/{{persona.id}}" title="Editar" type="button" class="btn btn-primary">Editar </a>
                                       <button class="btn btn-danger" onclick="return eliminar();" type="submit">
                                         Eliminar
                                       </button>

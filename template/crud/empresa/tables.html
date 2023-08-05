@@ -56,13 +56,13 @@
       <div class="page-breadcrumb">
         <div class="row">
           <div class="col-12 d-flex no-block align-items-center">
-            <h4 class="page-title">Colmena</h4>
+            <h4 class="page-title">Empresa</h4>
             <div class="ms-auto text-end">
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="#">CRUD</a></li>
                   <li class="breadcrumb-item active" aria-current="page">
-                    Colmena
+                    Empresa
                   </li>
                 </ol>
               </nav>
@@ -76,7 +76,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title mb-0">Creación de colmena</h5>
+                <h5 class="card-title mb-0">Creación de empresa</h5>
               </div>
               <div class="card">
                 <div class="card-body">
@@ -95,39 +95,18 @@
 
                             <!-- {{ form.as_p }} -->
                       <tr class="espacio">
-
                         <td>
 
                           <div class="col-lg-7">
                             <label for="nombre">Nombre</label>
-                            {{ form.nombre}}
+                            {{ form.nombre }}
                             <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto -->
                           </div>
                         </td>
                         <td>
-
                           <div class="col-lg-7">
-                            <label for="feinicio">Fecha de inicio</label>
-                            {{ form.feinicio}}
-                            <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto -->
-                          </div>
-                        </td>
-                        <td>
-
-                          <div class="col-lg-7">
-                            <label for="fefin">Fecha final</label>
-                            {{ form.fefin}}
-                            <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto -->
-                          </div>
-                        </td>
-
-
-
-                        <td>
-
-                          <div class="col-lg-7">
-                            <label for="especies">Especies</label>
-                            {{ form.especies}}
+                            <label for="nit">Nit</label>
+                            {{ form.nit}}
                             <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto -->
                           </div>
                         </td>
@@ -135,28 +114,20 @@
                         <td>
 
                           <div class="col-lg-7">
-                            <label for="polifloracion">Polinizacion y floración</label>
-                            {{ form.polifloracion}}
+                            <label for="direccion">Dirección</label>
+                            {{ form.direccion }}
                             <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto -->
                           </div>
                         </td>
                         <td>
 
                           <div class="col-lg-7">
-                            <label for="cultivo_id">Cultivo</label>
-                            {{ form.cultivo_id}}
+                            <label for="t_empresa">Tipo de empresa</label>
+                            {{ form.t_empresa }}
                             <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto -->
                           </div>
                         </td>
 
-                        <td>
-
-                          <div class="col-lg-7">
-                            <label for="especie_abeja_id">Especie de abeja</label>
-                            {{ form.especie_abeja_id}}
-                            <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto -->
-                          </div>
-                        </td>
 
                       </tr>
                       <tr>
@@ -194,43 +165,37 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">Lista de colmena</h5>
+                  <h5 class="card-title">Lista de empresa</h5>
                   <div class="table-responsive">
                     <table id="zero_config" class="table table-striped table-bordered">
                       <thead>
                         <tr>
-                          <th>Código de colmena</th>
+                          <th>Código de empresa</th>
                           <th>Nombre</th>
-                          <th>Fecha de inicio</th>
-                          <th>Fecha fin</th>
-                          <th>Especies</th>
-                          <th>Polinización y floración</th>
-                          <th>Cultivo</th>
-                          <th>Especie de abeja</th>
+                          <th>Nit</th>
+                          <th>Dirección</th>
+                          <th>Tipo de empresa</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {% for colmena in object_list %}
+                        {% for empresa in object_list %}
                         <tr>
-                          <td>{{ colmena.idcolmena}}</td>
-                          <td>{{ colmena.nombre}}</td>
-                          <td>{{ colmena.feinicio}}</td>
-                          <td>{{ colmena.fefin}}</td>
-                          <td>{{ colmena.especies}}</td>
-                          <td>{{ colmena.polifloracion}}</td>
-                          <td>{{ colmena.cultivo_id}}</td>
-                          <td>{{ colmena.especie_abeja_id}}</td>
+                          <td>{{ empresa.id}}</td>
+                          <td>{{ empresa.nombre}}</td>
+                          <td>{{ empresa.nit}}</td>
+                          <td>{{ empresa.direccion}}</td>
+                          <td>{{ empresa.t_empresa}}</td>
 
 
                           <td>
-                            <form method="POST" action="eliminar/{{colmena.id}}">
+                            <form method="POST" action="eliminar/{{empresa.id}}">
                               {% csrf_token %}
                               <div class="btn-group">
 
                                 <!-- Creamos 3 botones que son ver, Editar y Eliminar, nos sirven para gestionar nuestros registros o postres -->
-                                <a href="detalle/{{colmena.id}}" title="Ver" type="button" class="btn btn-success">Ver
+                                <a href="detalle/{{empresa.id}}" title="Ver" type="button" class="btn btn-success">Ver
                                 </a>
-                                <a href="editar/{{colmena.id}}" title="Editar" type="button"
+                                <a href="editar/{{empresa.id}}" title="Editar" type="button"
                                   class="btn btn-primary">Editar </a>
                                 <button class="btn btn-danger" onclick="return eliminar();" type="submit">
                                   Eliminar

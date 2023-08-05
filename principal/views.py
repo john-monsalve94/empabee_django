@@ -8,6 +8,10 @@ from django.shortcuts import render
 def Home(request):
     return render(request, 'crud/index.html')
 
+
+# def Parametros(request):
+#     return render(request, "index.html")
+
 # pantalla de login
 
 

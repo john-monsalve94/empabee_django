@@ -14,10 +14,10 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-#Login view y logoutView permiten hacer login
-from django.contrib.auth.views import LoginView,LogoutView
+# Login view y logoutView permiten hacer login
+from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path, include
 from principal.views import *
 from principal import urls as principal_urls
 from .schema import schema
@@ -25,9 +25,9 @@ from graphene_django.views import GraphQLView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/',Home,name='index'),
-    path('',LoginView.as_view(template_name='login.html'),name='login'),
-    path('logout/',LogoutView.as_view(template_name='login.html'),name='logout'),
-    path('principal/',include(principal_urls)),
-    path('graphql',GraphQLView.as_view(graphiql=True, schema=schema))
+    path('home/', Home, name='index'),
+    path('', LoginView.as_view(template_name='login.html'), name='login'),
+    path('logout/', LogoutView.as_view(template_name='login.html'), name='logout'),
+    path('principal/', include(principal_urls)),
+    path('graphql', GraphQLView.as_view(graphiql=True, schema=schema))
 ]

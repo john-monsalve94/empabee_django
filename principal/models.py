@@ -125,9 +125,8 @@ class Empresa(models.Model):
         managed = True
         db_table = 'empresa'
 
-
-def __str__(self) -> str:
-    return self.p_nombre
+    def __str__(self) -> str:
+        return self.nombre
 
 
 class EspecieAbeja(models.Model):
@@ -258,9 +257,8 @@ class Persona(models.Model):
         db_table = 'persona'
         db_table_comment = 'tabla para guardar los datos de las personas'
 
-
-def __str__(self) -> str:
-    return self.p_nombre
+    def __str__(self) -> str:
+        return self.p_nombre
 
 
 class ProduccionColmena(models.Model):

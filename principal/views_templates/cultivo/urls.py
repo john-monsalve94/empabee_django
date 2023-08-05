@@ -5,14 +5,14 @@ from .views import *
 urlpatterns = [
 
     path('', ListadoCultivo.as_view(
-        template_name="cultivo/index.html"), name='tablaCul'),
+        template_name="crud/cultivo/tables.html"), name='tablaCul'),
     path('detalle/<int:pk>', CultivoDetalle.as_view(
-        template_name="cltivo/detalle.html"), name='detalleCul'),
+        template_name="crud/cultivo/detalle.html"), name='detalleCul'),
     path('editar/<int:pk>', CultivoActualizar.as_view(
-        template_name="cultivo/actualizar.html"), name='actualizarCult'),
+        template_name="crud/cultivo/actualizar.html"), name='actualizarCult'),
     path('crear', CultivoCrear.as_view(
-        template_name="cultivo/crear.html"), name='crearCul'),
+        template_name="crud/cultivo/crear.html"), name='crearCul'),
     path('eliminar/<int:pk>', CultivoEliminar.as_view(),
-         name='cultivo/eliminar.html')
+         name='crud/cultivo/eliminar.html')
 
 ]
