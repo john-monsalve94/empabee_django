@@ -5,6 +5,7 @@
 #   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
 #   * Remove `managed = True` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -42,6 +43,8 @@ class Ciudad(models.Model):
         db_table = 'ciudad'
         db_table_comment = 'Tabla utilizada para guardar nombres ,codigos postales y codigos de ciudad'
 
+    def __str__(self) -> str:
+        return self.nombre
 
 class Colmena(models.Model):
     nombre = models.CharField(max_length=45, db_comment='Nombre: Este campo almacena el nombre o identificacin de un registro especfico relacionado con la apicultura. Puede ser el nombre de un apicultor, una granja de abejas o cualquier otro nombre que ayude a identificar la entrada en la base de datos.')
@@ -55,6 +58,9 @@ class Colmena(models.Model):
     class Meta:
         managed = True
         db_table = 'colmena'
+    
+    def __str__(self):
+        return self.nombre
 
 
 class Contrato(models.Model):
@@ -86,6 +92,9 @@ class Cultivo(models.Model):
     class Meta:
         managed = True
         db_table = 'cultivo'
+    
+    def __str__(self):
+        return self.nombre_cultivo
 
 
 class Departamentos(models.Model):
@@ -99,6 +108,8 @@ class Departamentos(models.Model):
         db_table = 'departamentos'
         db_table_comment = 'Tabla usada para guardar nombres de departamentos'
 
+    def __str__(self):
+        return self.nombre
 
 class Direccion(models.Model):
     calle = models.CharField(max_length=45)
@@ -137,14 +148,20 @@ class EspecieAbeja(models.Model):
         managed = True
         db_table = 'especie_abeja'
 
+    def __str__(self):
+        return self.nombre
+    
 
 class EspeciePez(models.Model):
     nombre = models.CharField(max_length=45)
-    descripcion = models.CharField(max_length=45)
+    descripcion = models.TextField()
 
     class Meta:
         managed = True
         db_table = 'especie_pez'
+    
+    def __str__(self):
+        return self.nombre
 
 
 class Estanque(models.Model):
@@ -163,21 +180,52 @@ class Estanque(models.Model):
         managed = True
         db_table = 'estanque'
 
+    def __str__(self):
+        return self.nombre
+    
+class Tiptrata(models.Model):
+    nombre = models.TextField()
+    descripcion = models.TextField()
+
+    class Meta:
+        managed = True
+        db_table = 'tiptrata'
+
+    def __str__(self):
+        return self.nombre
+
+class Tratamiento(models.Model):
+    fecha_aplicacion = models.DateField()
+    dosis = models.FloatField()
+    resultado = models.CharField(max_length=250)
+    tipo_tratamiento = models.ForeignKey(Tiptrata, models.DO_NOTHING)
+
+    class Meta:
+        managed = True
+        db_table = 'tratamiento'
+
+    def __str__(self) -> str:
+        return self.fecha_aplicacion+" "+self.tipo_tratamiento.nombre
 
 class InfotrataColmena(models.Model):
-    nombre = models.TextField()
+    info = models.TextField()
     f_inicio = models.DateField()
     f_fin = models.DateField(blank=True, null=True)
-    infotrata_colmenacol = models.IntegerField(blank=True, null=True)
     colmena = models.ForeignKey(Colmena, models.DO_NOTHING)
+    tratamiento = models.ForeignKey(Tratamiento, models.DO_NOTHING)
 
     class Meta:
         managed = True
         db_table = 'infotrata_colmena'
+    
+    def __str__(self) -> str:
+        return self.colmena.nombre
+        
+
 
 
 class InfotrataEstanque(models.Model):
-    nombre = models.TextField()
+    info = models.TextField()
     f_inicio = models.DateField()
     f_fin = models.DateField()
     tratamiento = models.ForeignKey('Tratamiento', models.DO_NOTHING)
@@ -189,6 +237,8 @@ class InfotrataEstanque(models.Model):
         managed = True
         db_table = 'infotrata_estanque'
         unique_together = (('id', 'estanque_id'),)
+    
+ 
 
 
 class MSensorColmena(models.Model):
@@ -240,8 +290,8 @@ class Persona(models.Model):
         max_length=45, blank=True, null=True, db_comment='segundo apellido de la persona')
     genero = models.CharField(
         max_length=9, db_comment='Este campo contiene los generos por los que se puede registrar una persona')
-    telefono = models.IntegerField(
-        db_comment='telefono usado para ponerse en contacto con la persona')
+    telefono = models.CharField(
+        max_length=120,db_comment='telefono usado para ponerse en contacto con la persona')
     correo = models.CharField(
         max_length=120, db_comment='correo usado para ponerse en contacto con la persona')
     n_identificacion = models.IntegerField(
@@ -251,6 +301,7 @@ class Persona(models.Model):
     ciudad_nacimiento = models.ForeignKey(
         Ciudad, models.DO_NOTHING, related_name='persona_ciudad_nacimiento_set')
     t_identificacion = models.ForeignKey('TIdentificacion', models.DO_NOTHING)
+    user = models.OneToOneField(User,null=True, on_delete=models.SET_NULL)
 
     class Meta:
         managed = True
@@ -285,7 +336,7 @@ class ProduccionEstanque(models.Model):
 
 class ReporteColmena(models.Model):
     fecha = models.DateField(blank=True, null=True)
-    descripcion = models.CharField(max_length=45)
+    descripcion = models.TextField()
     infotrata_colmena = models.ForeignKey(InfotrataColmena, models.DO_NOTHING)
 
     class Meta:
@@ -295,7 +346,7 @@ class ReporteColmena(models.Model):
 
 class ReporteEstanque(models.Model):
     fecha = models.DateField(blank=True, null=True)
-    descripcion = models.CharField(max_length=45)
+    descripcion = models.TextField()
     infotrata_estanque = models.ForeignKey(
         InfotrataEstanque, models.DO_NOTHING)
 
@@ -306,7 +357,7 @@ class ReporteEstanque(models.Model):
 
 class Sensor(models.Model):
     nombre = models.CharField(max_length=45)
-    descripcion = models.CharField(max_length=150)
+    descripcion = models.TextField()
     ubicacion = models.CharField(max_length=150)
     tipo_sensor = models.ForeignKey('Tsensor', models.DO_NOTHING)
 
@@ -314,6 +365,8 @@ class Sensor(models.Model):
         managed = True
         db_table = 'sensor'
 
+    def __str__(self):
+        return self.nombre
 
 class TContrato(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -324,6 +377,8 @@ class TContrato(models.Model):
         managed = True
         db_table = 't_contrato'
 
+    def __str__(self):
+        return self.nombre
 
 class TEmpresa(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -334,6 +389,8 @@ class TEmpresa(models.Model):
         managed = True
         db_table = 't_empresa'
 
+    def __str__(self):
+        return self.nombre
 
 class TIdentificacion(models.Model):
     nombre = models.CharField(
@@ -346,32 +403,19 @@ class TIdentificacion(models.Model):
         db_table = 't_identificacion'
         db_table_comment = 'Tabla para guardar el nombre de los distintos tipos de identificacion, por ejemplo cedula de extranjeria , cedula de ciudadania etc '
 
+    def __str__(self):
+        return self.nombre
+    
 
-class Tiptrata(models.Model):
-    nombre = models.TextField()
-    descripcion = models.TextField()
-
-    class Meta:
-        managed = True
-        db_table = 'tiptrata'
-
-
-class Tratamiento(models.Model):
-    fecha_aplicacion = models.DateField()
-    dosis = models.FloatField()
-    resultado = models.CharField(max_length=250)
-    tipo_tratamiento = models.ForeignKey(Tiptrata, models.DO_NOTHING)
-    infotrata_colmena = models.ForeignKey(InfotrataColmena, models.DO_NOTHING)
-
-    class Meta:
-        managed = True
-        db_table = 'tratamiento'
 
 
 class Tsensor(models.Model):
     nombre = models.CharField(max_length=45)
-    descripcion = models.CharField(max_length=150)
+    descripcion = models.TextField()
 
     class Meta:
         managed = True
         db_table = 'tsensor'
+    
+    def __str__(self):
+        return self.nombre

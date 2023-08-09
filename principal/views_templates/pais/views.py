@@ -19,7 +19,7 @@ class PaisCrear(SuccessMessageMixin, CreateView):
     form = table
     fields = "__all__"
     success_message ='Pais creado correctamente'
-     
+    
     def get_success_url(self):        
         return reverse('tablaPais')
 

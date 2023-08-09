@@ -1,4 +1,5 @@
-from django.urls import path, include
+from django.contrib.auth.decorators import login_required
+from django.urls import path,include
 from .pais import urls as pais_urls
 from .colmena import urls as colmena_urls
 from .estanque import urls as estanque_urls

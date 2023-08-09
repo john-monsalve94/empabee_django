@@ -32,7 +32,7 @@ SECRET_KEY = 'django-insecure-esk$rh$-um_t0i4v+_^d9hhokx)v#glc#medj!u+z1i4nvpw+7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost','127.0.0.1']
 
 
 # Application definition
@@ -89,7 +89,7 @@ DATABASES = {
     'default': {
 
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'empabee2',
+        'NAME': 'empabee',
         'USER': 'root',
         'PASSWORD': '',
         'PORT': '3306',
@@ -132,7 +132,8 @@ AUTHENTICATION_BACKENDS = [
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
 
-LOGIN_REDIRECT_URL = 'index'
+LOGIN_REDIRECT_URL = 'dashboard'
+LOGIN_URL = 'login'
 
 LANGUAGE_CODE = 'es-es'
 

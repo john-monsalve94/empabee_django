@@ -64,7 +64,7 @@
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
                   <li class="breadcrumb-item active" aria-current="page">
-                    Library
+                    País
                   </li>
                 </ol>
               </nav>
@@ -81,7 +81,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title mb-0">Actualización de centro</h5>
+                <h5 class="card-title mb-0">Actualización de país</h5>
               </div>
               <div class="card">
                 <div class="card-body">
@@ -106,6 +106,14 @@
                           <div class="col-lg-7">
                             <label for="nombre">Nombre</label>
                             {{ form.nombre }}
+                            <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto -->
+                          </div>
+                        </td>
+                           <td>
+
+                          <div class="col-lg-7">
+                            <label for="codigo">Código</label>
+                            {{ form.codigo }}
                             <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto -->
                           </div>
                         </td>
