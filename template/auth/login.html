@@ -7,40 +7,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
     <link rel="stylesheet" href="../../static/css/auth/login.css">
-    <link rel="shortcut icon" href="../../static/imagen/abejas/logo.jpeg" type="image/x-icon">
+    <link rel="shortcut icon" href="../../static/imagen/abejas/logo_abejas.png" type="image/x-icon">
 </head>
 
 <body>
-    <div class="login-box">
-        <img src="../../static/imagen/abejas/logo.jpeg" alt="logo" class="avatar">
-        <h1>LOGIN</h1>
 
+    <main>
+        <section class="login-box">
+            <div class="login-title">
+                <img src="../../static/imagen/abejas/logo_abejas.png" alt="logo" class="avatar">
+                <h1>LOGIN</h1>
+            </div>
+            <form method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
+                <fieldset class="wrap-input100 validate-input" data-validate="Enter username">
+                    <label for="username">Usuario</label>
+                    <input class="input100" type="text" id="username" name="username" placeholder="Ingrese su nombre de usuario" required>
+                </fieldset>
+                <fieldset class="wrap-input100 validate-input" data-validate="Enter password">
+                    <label for="password">Contraseña</label>
+                    <input class="input100" type="password" id="password" name="password" placeholder="Ingrese su contraseña" required>
+                </fieldset>
+                <div class="form-buttons">
+                    <input type="submit" class="ingresar" value="Iniciar Sesión">
+                    <input type="reset" class="ingresar" value="Cancelar">
+                </div>
+                <div class="form-links">
+                    <a href="registrarse.html"> Registrate</a>
+                    <a href="cuenta.html"> Olvidaste tu cuenta</a>
+                </div>
+            </form>
+        </section>
+    </main>
 
-        <form method="POST" action="{% url 'login' %}">
-            {% csrf_token %}
-
-            <fieldset class="wrap-input100 validate-input" data-validate="Enter username">
-                <label for="username">Usuario</label>
-                <input class="input100" type="text" id="username" name="username" placeholder="User name">
-            </fieldset>
-            <fieldset class="wrap-input100 validate-input" data-validate="Enter password">
-
-                <label for="password">Contraseña</label>
-                <input class="input100" type="password" id="password" name="password" placeholder="Password"> 
-
-            </fieldset>
-
-            <input type="submit" class="ingresar" value="INGRESAR">
-
-            <br><br>
-            <a href="registrarse.html"> Registrate</a>
-            <br><br>
-            <a href="cuenta.html"> Olvidaste tu cuenta</a>
-            <br><br>
-
-        </form>
-
-    </div>
 </body>
 
 </html>
