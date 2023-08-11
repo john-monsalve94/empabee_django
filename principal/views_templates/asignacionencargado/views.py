@@ -25,6 +25,8 @@ class AsignacionEncargadoCrear(SuccessMessageMixin, CreateView):
         return reverse('tablaAsignacionEncargado')
 
 
+
+
 class AsignacionEncargadoDetalle (DetailView):
     model = table
 

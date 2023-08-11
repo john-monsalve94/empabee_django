@@ -94,127 +94,72 @@
                             {# Pasamos el 'csrf_token' de seguridad para poder crear un nuevo registro #}
                             {% csrf_token %}
 
-                            <!-- {{ form.as_p }} -->
-                      <tr class="espacio">
+                            <a href="{% url 'crearAsignacionEncargado' %}" title="Editar" type="button"
+                              class="btn btn-primary">Editar
+                            </a>
 
-                        <td>
-                          <div class="col-lg-7">
-                            <label for="feche_inicial">Fecha de inicio</label>
-                            {{ form.feche_inicial}}
-                            <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto -->
-                          </div>
-                        </td>
-
-                        <td>
-
-                          <div class="col-lg-7">
-                            <label for="fecha_final">Fecha final</label>
-                            {{ form.fecha_final }}
-                            <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto -->
-                          </div>
-                        </td>
-                        <td>
-
-                          <div class="col-lg-7">
-                            <label for="empresa">Empresa</label>
-                            {{ form.empresa }}
-                            <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto -->
-                          </div>
-                        </td>
-                        <td>
-
-                          <div class="col-lg-7">
-                            <label for="persona">Persona</label>
-                            {{ form.persona}}
-                            <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto -->
-                          </div>
-                        </td>
-
+                          </form>
+                        </div>
                       </tr>
-                      <tr>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                        <td>
-
-                        </td>
-                      </tr>
-
-
-
-
-                      <div>
-                        <button type="submit" class="btn btn-primary">Aceptar</button>
-                        <a href="../" type="submit" class="btn btn-primary">Cancelar</a>
-                      </div>
-                      &nbsp;
-                      &nbsp;
-                      &nbsp;
-
-                      </form>
+                    </thead>
+                  </table>
                 </div>
-                </tr>
-                </thead>
-                </table>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-12">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Lista de asignación de encargado</h5>
-                  <div class="table-responsive">
-                    <table id="zero_config" class="table table-striped table-bordered">
-                      <thead>
-                        <tr>
-                          <th>Código de Asignación de encargado</th>
-                          <th>Fecha de inicio</th>
-                          <th>Fecha final</th>
-                          <th>Empresa</th>
-                          <th>Persona</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {% for asignacionencargado in object_list %}
-                        <tr>
-                          <td>{{ asignacionencargado.idasignacionencargado}}</td>
-                          <td>{{ asignacionencargado.fecha_inicial}}</td>
-                          <td>{{ asignacionencargado.fecha_final}}</td>
-                          <td>{{ asignacionencargado.empresa}}</td>
-                          <td>{{ asignacionencargado.persona}}</td>
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Lista de asignación de encargado</h5>
+                    <div class="table-responsive">
+                      <table id="zero_config" class="table table-striped table-bordered">
+                        <thead>
+                          <tr>
+                            <th>Código de Asignación de encargado</th>
+                            <th>Fecha de inicio</th>
+                            <th>Fecha final</th>
+                            <th>Empresa</th>
+                            <th>Persona</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {% for asignacionencargado in object_list %}
+                          <tr>
+                            <td>{{ asignacionencargado.idasignacionencargado}}</td>
+                            <td>{{ asignacionencargado.fecha_inicial}}</td>
+                            <td>{{ asignacionencargado.fecha_final}}</td>
+                            <td>{{ asignacionencargado.empresa}}</td>
+                            <td>{{ asignacionencargado.persona}}</td>
 
 
-                          <td>
-                            <form method="POST" action="eliminar/{{asignacionencargado.id}}">
-                              {% csrf_token %}
-                              <div class="btn-group">
+                            <td>
+                              <form method="POST" action="eliminar/{{asignacionencargado.id}}">
+                                {% csrf_token %}
+                                <div class="btn-group">
 
-                                <!-- Creamos 3 botones que son ver, Editar y Eliminar, nos sirven para gestionar nuestros registros o postres -->
-                                <a href="detalle/{{asignacionencargado.id}}" title="Ver" type="button"
-                                  class="btn btn-success">Ver
-                                </a>
-                                <a href="editar/{{asignacionencargado.id}}" title="Editar" type="button"
-                                  class="btn btn-primary">Editar </a>
-                                <button class="btn btn-danger" onclick="return eliminar();" type="submit">
-                                  Eliminar
-                                </button>
-                              </div>
-                            </form>
-                          </td>
-                        </tr>
-                        {% endfor %}
-                      </tbody>
-                      <script>
-                        /****************************************
-                         *       Basic Table                   *
-                         ****************************************/
-                        $("#zero_config").DataTable();
-                      </script>
-                    </table>
+                                  <!-- Creamos 3 botones que son ver, Editar y Eliminar, nos sirven para gestionar nuestros registros o postres -->
+                                  <a href="detalle/{{asignacionencargado.id}}" title="Ver" type="button"
+                                    class="btn btn-success">Ver
+                                  </a>
+                                  <a href="editar/{{asignacionencargado.id}}" title="Editar" type="button"
+                                    class="btn btn-primary">Editar </a>
+                                  <button class="btn btn-danger" onclick="return eliminar();" type="submit">
+                                    Eliminar
+                                  </button>
+                                </div>
+                              </form>
+                            </td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                        <script>
+                          /****************************************
+                           *       Basic Table                   *
+                           ****************************************/
+                          $("#zero_config").DataTable();
+                        </script>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -222,22 +167,21 @@
           </div>
         </div>
       </div>
-    </div>
 
-    <script src="/static/assets/libs/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap tether Core JavaScript -->
-    <script src="/static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="/static/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-    <script src="/static/assets/extra-libs/sparkline/sparkline.js"></script>
-    <!--Wave Effects -->
-    <script src="/static/dist/js/waves.js"></script>
-    <!--Menu sidebar -->
-    <script src="/static/dist/js/sidebarmenu.js"></script>
-    <!--Custom JavaScript -->
-    <script src="/static/dist/js/custom.min.js"></script>
-    <!-- this page js -->
-    <script src="/static/assets/extra-libs/DataTables/datatables.min.js"></script>
+      <script src="/static/assets/libs/jquery/dist/jquery.min.js"></script>
+      <!-- Bootstrap tether Core JavaScript -->
+      <script src="/static/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+      <!-- slimscrollbar scrollbar JavaScript -->
+      <script src="/static/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+      <script src="/static/assets/extra-libs/sparkline/sparkline.js"></script>
+      <!--Wave Effects -->
+      <script src="/static/dist/js/waves.js"></script>
+      <!--Menu sidebar -->
+      <script src="/static/dist/js/sidebarmenu.js"></script>
+      <!--Custom JavaScript -->
+      <script src="/static/dist/js/custom.min.js"></script>
+      <!-- this page js -->
+      <script src="/static/assets/extra-libs/DataTables/datatables.min.js"></script>
 
 
 </body>
