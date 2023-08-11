@@ -24,7 +24,7 @@
       content="Matrix Admin Lite Free Version is powerful and clean admin dashboard template, inpired from Bootstrap Framework"
     />
     <meta name="robots" content="noindex,nofollow" />
-    <title>Matrix Admin Lite Free Versions Template by WrapPixel</title>
+    <title>Empa-Bee</title>
     <!-- Favicon icon -->
     <link
       rel="icon"
@@ -79,7 +79,7 @@
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">
-                      Library
+                      Sensor
                     </li>
                   </ol>
                 </nav>
@@ -103,22 +103,26 @@
          
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">Regional</h5>
+                  <h5 class="card-title">Sensor</h5>
                   <div class="table-responsive">
                     <table id="zero_config"class="table table-striped table-bordered">
                       <thead>
                         <tr>
-                          <th>Código de regional</th>
+                          <th>Código de sensor</th>
                           <th>Nombre</th>
-                          <th>Departamento</th>                         
+                          <th>Descripción</th>    
+                          <th>Ubicación</th> 
+                          <th>Tipo de sensor</th>                      
                         </tr>
                       </thead>
                       <tbody>
                         
                           <tr>
-                            <td>{{ regional.idregional}}</td>
-                            <td>{{ regional.nombre}}</td>
-                            <td>{{ regional.departamento_iddepartamento}}</td>                     
+                            <td>{{ sensor.id}}</td>
+                            <td>{{ sensor.nombre}}</td>
+                            <td>{{ sensor.descripcion}}</td>   
+                            <td>{{ sensor.ubicacion}}</td> 
+                            <td>{{ sensor.tipo_sensor}}</td>                   
                           </tr>
                       
                       </tbody>

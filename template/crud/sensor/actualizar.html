@@ -18,7 +18,7 @@
     <meta name="keywords"content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Matrix lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Matrix admin lite design, Matrix admin lite dashboard bootstrap 5 dashboard template"/>
     <meta name="description"content="Matrix Admin Lite Free Version is powerful and clean admin dashboard template, inpired from Bootstrap Framework"/>
     <meta name="robots" content="noindex,nofollow" />
-    <title>Matrix Admin Lite Free Versions Template by WrapPixel</title>
+    <title>Empa-Bee</title>
     <!-- Favicon icon -->
     <link rel="icon"type="image/png"sizes="16x16"href="/static/assets/images/favicon.png"/>
     <!-- Custom CSS -->
@@ -68,7 +68,7 @@
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">
-                      Library
+                      Sensor
                     </li>
                   </ol>
                 </nav>
@@ -85,7 +85,7 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title mb-0">Actualización de centro</h5>
+                  <h5 class="card-title mb-0">Actualización de sensor</h5>
                 </div>
                 <div class="card">
                   <div class="card-body">
@@ -105,13 +105,7 @@
                                       
                                       <!-- {{ form.as_p }} -->
                                       <tr class="espacio">
-                                          <td >
-                                              
-                                              <div class="col-lg-7">
-                                                  <label for="idregional">Código de regional</label>
-                                                  {{ form.idregional}} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto -->
-                                              </div>
-                                          </td>
+                                          
                                           <td >
                                               
                                               <div class="col-lg-7" >
@@ -121,10 +115,22 @@
                                           </td>
                                           <td>
                                               <div class="col-lg-7">
-                                                  <label for="departamento_iddepartamento" >Departamento</label>
-                                                  {{ form.departamento_iddepartamento}} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
+                                                  <label for="descripcion" >Descripción</label>
+                                                  {{ form.descripcion}} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
                                               </div>
-                                          </td>                                    
+                                          </td>    
+                                           <td>
+                                              <div class="col-lg-7">
+                                                  <label for="ubicacion" >Ubicación</label>
+                                                  {{ form.ubicacion}} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
+                                              </div>
+                                          </td> 
+                                           <td>
+                                              <div class="col-lg-7">
+                                                  <label for="tipo_sensor" >Tipo de sensor</label>
+                                                  {{ form.tipo_sensor}} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
+                                              </div>
+                                          </td>                                 
                                       </tr>
 
                                       

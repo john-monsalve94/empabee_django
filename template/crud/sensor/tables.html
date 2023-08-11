@@ -16,7 +16,7 @@
     <meta name="keywords"content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Matrix lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Matrix admin lite design, Matrix admin lite dashboard bootstrap 5 dashboard template"/>
     <meta name="description"content="Matrix Admin Lite Free Version is powerful and clean admin dashboard template, inpired from Bootstrap Framework"/>
     <meta name="robots" content="noindex,nofollow" />
-    <title>Matrix Admin Lite Free Versions Template by WrapPixel</title>
+    <title>Empa-Bee</title>
     <!-- Favicon icon -->
     <link rel="icon"type="image/png"sizes="16x16"href="/static/assets/images/favicon.png"/>
     <!-- Custom CSS -->
@@ -60,13 +60,13 @@
         <div class="page-breadcrumb">
           <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
-              <h4 class="page-title">colmena</h4>
+              <h4 class="page-title">Sensor</h4>
               <div class="ms-auto text-end">
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">CRUD</a></li>
                     <li class="breadcrumb-item active" aria-current="page">
-                      Apicultura
+                      Sensor
                     </li>
                   </ol>
                 </nav>
@@ -80,7 +80,7 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title mb-0">Creación de colmena</h5>
+                  <h5 class="card-title mb-0">Creación de sensor</h5>
                 </div>
                 <div class="card">
                   <div class="card-body">
@@ -99,59 +99,32 @@
                                       
                                       <!-- {{ form.as_p }} -->
                                       <tr class="espacio">
-                                        
-                                          <td >
-                                              
-                                              <div class="col-lg-7">
-                                                  <label for="nombre" >Nombre</label>
-                                                  {{ form.nombre}} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto -->
-                                              </div>
-                                          </td>
+                                         
                                           <td >
                                               
                                               <div class="col-lg-7" >
-                                                  <label for="feinicio" >Fecha de inicio</label>
-                                                  {{ form.feinicio}} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
+                                                  <label for="nombre">Nombre</label>
+                                                  {{ form.nombre  }} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
                                               </div>
                                           </td>
                                           <td>
-                                              
                                               <div class="col-lg-7">
-                                                  <label for="fefin" >Fecha final</label>
-                                                  {{ form.fefin}} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
+                                                  <label for="descripcion" >Descripción</label>
+                                                  {{ form.descripcion}} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
                                               </div>
-                                          </td>
-
-
-
-                                          <td>
-                                              
+                                          </td>    
+                                           <td>
                                               <div class="col-lg-7">
-                                                  <label for="especies" >Especies</label>
-                                                  {{ form.especies}} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
+                                                  <label for="ubicacion" >Ubicación</label>
+                                                  {{ form.ubicacion}} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
                                               </div>
-                                          </td>  
-                                          <td>
-                                              
+                                          </td> 
+                                           <td>
                                               <div class="col-lg-7">
-                                                  <label for="cantcolmenas" >Cantidad de colmenas</label>
-                                                  {{ form.cantcolmenas}} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
+                                                  <label for="tipo_sensor" >Tipo de sensor</label>
+                                                  {{ form.tipo_sensor}} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
                                               </div>
-                                          </td>
-                                          <td>
-                                              
-                                              <div class="col-lg-7">
-                                                  <label for="polifloracion" >Polinizacion</label>
-                                                  {{ form.polifloracion}} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
-                                              </div>
-                                          </td>
-                                          <td>
-                                              
-                                              <div class="col-lg-7">
-                                                  <label for="medicion_sensor" >Medicion del sensor</label>
-                                                  {{ form.medicion_sensor}} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
-                                              </div>
-                                          </td>
+                                          </td>            
 
 
                                                                                   
@@ -191,45 +164,36 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">Lista de colmena</h5>
+                  <h5 class="card-title">Lista de sensor</h5>
                   <div class="table-responsive">
                     <table id="zero_config" class="table table-striped table-bordered">
                       <thead>
                         <tr>
-                          <th>Código de colmena</th>
+                         <th>Código de sensor</th>
                           <th>Nombre</th>
-                          <th>Fecha de inicio</th>
-                          <th>Fecha de final</th>
-
-
-                          <th>Especies</th>
-                          <th>Cantidad colmenas</th>
-                          <th>Polifloracion</th>
-                          <th>Medicion de sensor</th>                                       
+                          <th>Descripción</th>    
+                          <th>Ubicación</th> 
+                          <th>Tipo de sensor</th>                                      
                         </tr>
                       </thead>
                       <tbody>
-                        {% for colmena in object_list %}
+                        {% for sensor in object_list %}
                           <tr>
-                            <td>{{ colmena.id}}</td>
-                            <td>{{ colmena.nombre}}</td>
-                            <td>{{ colmena.feinicio}}</td>
-
-                            <td>{{ colmena.fefin}}</td>
-                            <td>{{ colmena.especies}}</td>
-                            <td>{{ colmena.cantcolmenas}}</td>
-                            <td>{{ colmena.polifloracion}}</td>
-                            <td>{{ colmena.medicion_sensor}}</td>
+                             <td>{{ sensor.id}}</td>
+                            <td>{{ sensor.nombre}}</td>
+                            <td>{{ sensor.descripcion}}</td>   
+                            <td>{{ sensor.ubicacion}}</td> 
+                            <td>{{ sensor.tipo_sensor}}</td> 
                             
                                                       
                             <td>
-                              <form method="POST" action="eliminar/{{colmena.id}}">
+                              <form method="POST" action="eliminar/{{sensor.id}}">
                                   {% csrf_token %}
                                   <div class="btn-group">
 
                                       <!-- Creamos 3 botones que son ver, Editar y Eliminar, nos sirven para gestionar nuestros registros o postres -->
-                                      <a href="detalle/{{colmena.id}}" title="Ver" type="button" class="btn btn-success">Ver </a>
-                                      <a href="editar/{{colmena.id}}" title="Editar" type="button" class="btn btn-primary">Editar </a>
+                                      <a href="detalle/{{sensor.id}}" title="Ver" type="button" class="btn btn-success">Ver </a>
+                                      <a href="editar/{{sensor.id}}" title="Editar" type="button" class="btn btn-primary">Editar </a>
                                       <button class="btn btn-danger" onclick="return eliminar();" type="submit">
                                         Eliminar
                                       </button>

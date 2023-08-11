@@ -16,7 +16,7 @@
     <meta name="keywords"content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Matrix lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Matrix admin lite design, Matrix admin lite dashboard bootstrap 5 dashboard template"/>
     <meta name="description"content="Matrix Admin Lite Free Version is powerful and clean admin dashboard template, inpired from Bootstrap Framework"/>
     <meta name="robots" content="noindex,nofollow" />
-    <title>Matrix Admin Lite Free Versions Template by WrapPixel</title>
+    <title>Empa-bee</title>
     <!-- Favicon icon -->
     <link rel="icon"type="image/png"sizes="16x16"href="/static/assets/images/favicon.png"/>
     <!-- Custom CSS -->
@@ -92,119 +92,8 @@
                               <div class="card-bodys">
                               
 
-                                  <form method="post" enctype="multipart/form-data">
-                  
-                                      {# Pasamos el 'csrf_token' de seguridad para poder crear un nuevo registro #}
-                                      {% csrf_token %}
-                                      
-                                      <!-- {{ form.as_p }} -->
-                                      <tr class="espacio">
-                                        <td >
-                                              
-                                              <div class="col-lg-7">
-                                                  <label for="p_nombre">Primer nombre</label>
-                                                  {{ form.p_nombre}} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto -->
-                                              </div>
-                                          </td>
-                                          <td >
-                                              
-                                              <div class="col-lg-7" >
-                                                  <label for="s_nombre">Segundo nombre</label>
-                                                  {{ form.s_nombre  }} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
-                                              </div>
-                                          </td>
-                                          <td >
-                                              
-                                              <div class="col-lg-7" >
-                                                  <label for="p_apellido">Primer apellido</label>
-                                                  {{ form.p_apellido  }} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
-                                              </div>
-                                          </td>
-                                          <td >
-                                              
-                                              <div class="col-lg-7" >
-                                                  <label for="s_apellido">Segundo apellido</label>
-                                                  {{ form.s_apellido  }} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
-                                              </div>
-                                          </td>
-                                          <td >
-                                              
-                                              <div class="col-lg-7" >
-                                                  <label for="genero">Genero</label>
-                                                  {{ form.genero  }} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
-                                              </div>
-                                          </td>
-                                          <td >
-                                              
-                                              <div class="col-lg-7" >
-                                                  <label for="telefono">Telefono</label>
-                                                  {{ form.telefono  }} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
-                                              </div>
-                                          </td>
-                                          <td >
-                                              
-                                              <div class="col-lg-7" >
-                                                  <label for="correo">Correo</label>
-                                                  {{ form.correo  }} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
-                                              </div>
-                                          </td>
-                                        
-                                          <td >
-                                              
-                                              <div class="col-lg-7" >
-                                                  <label for="n_identificacion">Número de identificación</label>
-                                                  {{ form.n_identificacion  }} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
-                                              </div>
-                                          </td>
-                                          <td >
-                                              
-                                              <div class="col-lg-7" >
-                                                  <label for="ciudad_nacimiento">Ciudad de nacimiento</label>
-                                                  {{ form.ciudad_nacimiento  }} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
-                                              </div>
-                                          </td>
-                                          <td >
-                                              
-                                              <div class="col-lg-7" >
-                                                  <label for="ciudad_residencia">Ciuda de residencia</label>
-                                                  {{ form.ciudad_residencia  }} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
-                                              </div>
-                                          </td>
-                                          <td >
-                                              
-                                              <div class="col-lg-7" >
-                                                  <label for="t_identificacion">Tipo de identificación</label>
-                                                  {{ form.t_identificacion  }} <!-- Usamos la librería 'widget_tweaks' para crear esta caja de texto --> 
-                                              </div>
-                                          </td>
+                              <a href="{% url 'crearPersona' %}" title="Editar" type="button" class="btn btn-primary">Editar </a>
 
-
-                                                                                  
-                                      </tr> 
-                                      <tr>
-                                        <td>
-
-                                        </td>
-                                        <td>
-                                          
-                                        </td>
-                                        <td>
-                                          
-                                        </td>
-                                      </tr> 
-                                      
-                                      
-
-
-                                      <div>              
-                                          <button type="submit" class="btn btn-primary">Aceptar</button> 
-                                          <a href="../" type="submit" class="btn btn-primary">Cancelar</a>
-                                      </div> 
-                                      &nbsp;
-                                      &nbsp;
-                                      &nbsp;
-                                   
-                                  </form>
                               </div>
                           </tr>
                       </thead>
