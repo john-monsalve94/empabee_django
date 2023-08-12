@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrarse</title>
+    <link rel="stylesheet" href="../../static/css/auth/register.css">
+    <link rel="shortcut icon" href="../../static/imagen/abejas/logo_abejas.png" type="image/x-icon">
+    {% load widget_tweaks %}
+</head>
+<body>
+    <main>
+        <section class="register-box">
+            <div class="register-title">
+                <img src="../../static/imagen/abejas/logo_abejas.png" alt="logo" class="avatar">
+                <h1>Registrarse</h1>
+            </div>
+            <form method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div class="form-section active" id="section-1">
+                    <fieldset class="form-group">
+                        <label for="{{ usuario_form.username.id_for_label }}">Usuario:</label>
+                        {{ usuario_form.username}}
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="{{usuario_form.email.id_for_label }}">Correo electronico</label>
+                        {{ usuario_form.email}}
+                    </fieldset>
+                    <div class="form-buttons">
+                        <button type="reset">Cancelar</button>
+                        <button type="button" class="btn-next" onclick="nextSection(2)">Siguiente</button>
+                    </div>
+                </div>
+                <div class="form-section" id="section-2">
+                    <fieldset class="form-group">
+                        <label for="{{ usuario_form.password1.id_for_label }}">Contraseña:</label>
+                        {{ usuario_form.password1}}
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="{{ usuario_form.password2.id_for_label }}">Confirmar Contraseña:</label>
+                        {{ usuario_form.password2}}
+                    </fieldset>
+                    <div class="form-buttons">
+                        <button type="button" class="btn-back" onclick="prevSection(1)">Atras</button>
+                        <button type="button" class="btn-next" onclick="nextSection(3)">Siguiente</button>
+                    </div>
+                </div>
+                <div class="form-section" id="section-3">
+                    <fieldset class="form-group">
+                        <label for="{{ persona_form.p_nombre.id_for_label }}">Primer nombre:</label>
+                        {{ persona_form.p_nombre}}
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="{{ persona_form.s_nombre.id_for_label }}">Segundo nombre:</label>
+                        {{ persona_form.s_nombre}}
+                    </fieldset>
+                    <div class="form-buttons">
+                        <button type="button" class="btn-back" onclick="prevSection(2)">Atras</button>
+                        <button type="button" class="btn-next" onclick="nextSection(4)">Siguiente</button>
+                    </div>
+                </div>
+                <div class="form-section" id="section-4">
+                    <fieldset class="form-group">
+                        <label for="{{ persona_form.p_apellido.id_for_label }}">Primer apelldio:</label>
+                        {{ persona_form.p_apellido}}
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="{{ persona_form.s_apellido.id_for_label }}">Segundo apellido:</label>
+                        {{ persona_form.s_apellido}}
+                    </fieldset>
+                    <div class="form-buttons">
+                        <button type="button" class="btn-back" onclick="prevSection(3)">Atras</button>
+                        <button type="button" class="btn-next" onclick="nextSection(5)">Siguiente</button>
+                    </div>
+                </div>
+                <div class="form-section" id="section-5">
+                    <fieldset class="form-group">
+                        <label for="{{ persona_form.genero.id_for_label }}">Genero:</label>
+                        {{ persona_form.genero}}
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="{{ persona_form.telefono.id_for_label }}">Teléfono:</label>
+                        {{ persona_form.telefono}}
+                    </fieldset>
+                    <div class="form-buttons">
+                        <button type="button" class="btn-back" onclick="prevSection(4)">Atras</button>
+                        <button type="button" class="btn-next" onclick="nextSection(6)">Siguiente</button>
+                    </div>
+                </div>
+                <div class="form-section" id="section-6">
+                    <fieldset class="form-group">
+                        <label for="{{ persona_form.t_identificacion.id_for_label }}">Tipo de identificación:</label>
+                        {{ persona_form.t_identificacion}}
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="{{ persona_form.n_identificacion.id_for_label }}">Numero de identificación:</label>
+                        {{ persona_form.n_identificacion}}
+                    </fieldset>
+                    <div class="form-buttons">
+                        <button type="button" class="btn-back" onclick="prevSection(5)">Atras</button>
+                        <button type="button" class="btn-next" onclick="nextSection(7)">Siguiente</button>
+                    </div>
+                </div>
+                <div class="form-section" id="section-7">
+                    <fieldset class="form-group">
+                        <label for="{{ persona_form.ciudad_residencia.id_for_label }}">Ciudad de Residencia:</label>
+                        {{ persona_form.ciudad_residencia}}
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="{{ persona_form.ciudad_nacimiento.id_for_label }}">Ciudad de Nacimiento:</label>
+                        {{ persona_form.ciudad_nacimiento}}
+                    </fieldset>
+                    <div class="form-buttons">
+                        <button type="button" class="btn-back" onclick="prevSection(6)">Atras</button>
+                        <button type="submit">Registrarse</button>
+                    </div>
+                </div>
+                <div class="form-links">
+                    <a href="{% url 'login' %}"> ¿Ya tienes cuenta? inicia sesión</a>
+                </div>
+            </form>
+        </section>
+    </main>
+    <script defer src="../../static/js/auth/forms.js"></script>
+</body>
+</html>

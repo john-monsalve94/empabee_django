@@ -27,9 +27,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',home,name='index'),
     path('dashboard',dashboard,name="dashboard"),
-    path('mi_cuenta/',login,name='mi_cuenta'),
     path('login/',LoginView.as_view(template_name='auth/login.html'),name='login'),
     path('logout/',LogoutView.as_view(template_name='auth/login.html'),name='logout'),
+    path('register/',register,name="register"),
     path('principal/',include(principal_urls)),
     path('graphql',GraphQLView.as_view(graphiql=True, schema=schema))
 ]

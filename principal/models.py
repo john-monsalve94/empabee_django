@@ -293,7 +293,7 @@ class Persona(models.Model):
     telefono = models.CharField(
         max_length=120,db_comment='telefono usado para ponerse en contacto con la persona')
     correo = models.CharField(
-        max_length=120, db_comment='correo usado para ponerse en contacto con la persona')
+        max_length=120,null=True,db_comment='correo usado para ponerse en contacto con la persona')
     n_identificacion = models.IntegerField(
         db_comment='numero de identificacion de la persona, usado para identificar a una persona a nivel de pais')
     ciudad_residencia = models.ForeignKey(
