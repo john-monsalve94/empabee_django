@@ -1,103 +1,193 @@
-body {
-    margin: 0;
-    padding: 0;
-    background-image: url(../../imagen/abejas/ProductosImages/mielLogin1.jpg), url(../../imagen/abejas/ProductosImages/mielLogin2.jpg);
-    background-repeat: no-repeat;
-    background-position-x: 370px, -200px;
-    background-size: contain;
-
-
-
-    font-family: 'Times New Roman';
-    height: 100vh;
+:root {
+    --color-miel: #F2AC57;
+    --blanco: #F2F2F2;
+    --negro: #0D0D0D;
+    --cafe: #592B02;
+    --cafe-transparente: rgb(89, 43, 2,40%);
+    --color-piel: #F2B988;
+    --piel-transparente: rgb(242, 185, 136,30%);
 }
 
-.login-box {
-    width: 600px;
-    height: 700px;
-    color: rgb(245, 213, 69);
-    top: 50%;
-    left: 70%;
-    /**para la posición**/
-    position: absolute;
-    /**especifica el ancho del area del contenido del elemento**/
-    transform: translate(-40%, -50%);
-    /****/
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    padding: 70px 30px;
-    backdrop-filter: blur(8px);
+}
+
+html {
+    font-size: 62.5%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+
+    height: 100vh;
+
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+
+    background-image: url(../../imagen/abejas/ProductosImages/mielLogin1.jpg), url(../../imagen/abejas/ProductosImages/mielLogin2.jpg);
+    background-position: top left, bottom right;
+    background-repeat: no-repeat,no-repeat;
+    background-size: 50% 100%,50% 100%;
+}
+
+main{
+    grid-column-start: 7;
+    grid-column-end: -1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-box{
+
+    padding: 30px;
+
+    min-width: 600px;
+
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    row-gap: 20px;
+
+    backdrop-filter: blur(6px);
+    border-radius: 20px;
+    background-color: var(--cafe-transparente);
+
 }
 
-fieldset{
-    border-bottom: none;
-    border-right: none;
-    border-top: none;
-    border-left: none;
-}
+.login-title{
 
-.avatar {
-    border-radius: 100%;
-    width: 250px;
-}
-
-.login-box .h1 {
-    margin: 0%;
-    padding: 0 0 20px;
-    text-align: center;
-    font-size: 22px;
-}
-
-.login-box label {
-    margin: 0;
-    padding: 0;
-    font-weight: bold;
-    display: block;
-}
-
-.login-box input {
     width: 100%;
-    margin-bottom: 20px;
-}
 
-.login-box input[type="text"],
-.login-box input[type="password"] {
-    border: none;
-    border-bottom: 1px solid rgb(245, 213, 69);
-    background: transparent;
-    outline: none;
-    height: 50px;
-    color: rgb(1, 2, 7);
-    font-size: 15px;
-    border-radius: 20px;
-}
-
-
-input {
-    text-indent: 20px;
-}
-
-.ingresar {
     display: flex;
-    background-color: rgb(245, 213, 69);
-    width: 301.2px;
-    height: 40px;
-    border-radius: 20px;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
-    color: rgb(255, 255, 255);
-    text-decoration: none;
+    row-gap: 10px;
+
 }
 
-.ingresar:hover {
-    background-color: rgb(245, 213, 69);
+.login-title img{
+    width: 250px;
+    height: 200px;
 }
 
-a {
+.login-title h1{
+    align-self: flex-start;
+
+    font-size: 3rem;
+    color: var(--color-miel);
+}
+
+.login-box form{
+
+    padding: 10px;
+
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    row-gap: 10px;
+
+}
+
+.login-box form>fieldset{
+
+    padding: 5px;
+
+    width: 100%;
+
+    display: grid;
+    grid-template-rows: repeat(2,1fr);
+    row-gap: 5px;
+
+    border: none;
+
+}
+
+.login-box form>fieldset label{
+
+    font-size: 2rem;
+    color: var(--color-miel);
+
+}
+
+.login-box form>fieldset input{
+
+    padding: 10px;
+
+    font-size: 1.5rem;
+    color: var(--cafe);
+    letter-spacing: 0.2rem;
+    
+    background-color: var(--piel-transparente);
+    border-radius: 15px;
+    border: 0.2rem solid var(--color-miel);
+    border-top: none;
+
+}
+
+.login-box form>fieldset input::placeholder{
+
+    font-size: 1.5rem;
+    letter-spacing: 0.2rem;
+    color: var(--cafe);
+
+}
+
+.form-buttons{
+
+    width: 75%;
+
+    display: flex;
+    justify-content: center;
+    column-gap: 10px;
+
+}
+
+.form-buttons input{
+    padding: 5px;
+
+    min-width: 150px;
+
+    font-size: 2rem;
+
+    border-radius: 50px;
+    border: none;
+}
+
+.form-buttons input[type="submit"]{
+
+    color: var(--cafe);
+
+    background-color: var(--color-miel);
+
+}
+
+.form-buttons input[type="reset"]{
+    color: var(--color-piel);
+
+    background-color: var(--cafe);
+}
+
+.form-links{
+    width: 50%;
+
+    display: flex;
+    justify-content: center;
+    column-gap: 5px;
+}
+
+.form-links a{
+    font-size: 1.5rem;
+    color: var(--cafe);
     text-decoration: none;
-    color: rgb(245, 213, 69);
-    font-size: 20px;
+
+    cursor: pointer;
 }
