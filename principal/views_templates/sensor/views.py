@@ -22,7 +22,7 @@ class SensorCrear(SuccessMessageMixin, CreateView):
     success_message = 'Sensor creado correctamente'
 
     def get_success_url(self):
-        return reverse('tablaSensor')
+        return reverse('tablaSen')
 
 
 class SensorDetalle (DetailView):
@@ -36,7 +36,7 @@ class SensorActualizar(SuccessMessageMixin, UpdateView):
     success_message = 'Sensor Actualizado Correctamente !'
 
     def get_success_url(self):
-        return reverse('tablaSensor')
+        return reverse('tablaSen')
 
 
 class SensorEliminar(SuccessMessageMixin, DeleteView):
@@ -46,4 +46,4 @@ class SensorEliminar(SuccessMessageMixin, DeleteView):
     success_message = 'Sensor Eliminado Correctamente !'
 
     def get_success_url(self):
-        return reverse('tablaSensor')
+        return reverse('tablaSen')

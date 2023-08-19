@@ -88,7 +88,7 @@
                         <div class="card-bodys">
 
 
-                          <a href="{% url 'crearCol' %}" title="Editar" type="button" class="btn btn-primary">Editar
+                          <a href="{% url 'crearCol' %}" title="Crear" type="button" class="btn btn-primary">Crear
                           </a>
 
 
@@ -121,7 +121,7 @@
                         <tbody>
                           {% for colmena in object_list %}
                           <tr>
-                            <td>{{ colmena.idcolmena}}</td>
+                            <td>{{ colmena.id}}</td>
                             <td>{{ colmena.nombre}}</td>
                             <td>{{ colmena.feinicio}}</td>
                             <td>{{ colmena.fefin}}</td>

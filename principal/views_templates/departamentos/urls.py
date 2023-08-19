@@ -5,14 +5,14 @@ from .views import *
 urlpatterns = [
 
     path('', ListadoDepartamentos.as_view(
-        template_name="departamentos/index.html"), name='tablaDep'),
+        template_name="crud/departamentos/tables.html"), name='tablaDep'),
     path('detalle/<int:pk>', DepartamentosDetalle.as_view(
-        template_name="departamentos/detalle.html"), name='detalleDep'),
+        template_name="crud/departamentos/detalle.html"), name='detalleDep'),
     path('editar/<int:pk>', DepartamentosActualizar.as_view(
-        template_name="departamentos/actualizar.html"), name='actualizarDep'),
+        template_name="crud/departamentos/actualizar.html"), name='actualizarDep'),
     path('crear', DepartamentosCrear.as_view(
-        template_name="departamentos/crear.html"), name='crearDep'),
+        template_name="crud/departamentos/crear.html"), name='crearDep'),
     path('eliminar/<int:pk>', DepartamentosEliminar.as_view(),
-         name='departamentos/eliminar.html')
+         name='crud/departamentos/eliminar.html')
 
 ]

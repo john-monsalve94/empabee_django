@@ -22,7 +22,7 @@ class DepartamentosCrear(SuccessMessageMixin, CreateView):
     success_message = 'Departamentos creado correctamente'
 
     def get_success_url(self):
-        return reverse('tablaDepartamentos')
+        return reverse('tablaDep')
 
 
 class DepartamentosDetalle (DetailView):
@@ -36,7 +36,7 @@ class DepartamentosActualizar(SuccessMessageMixin, UpdateView):
     success_message = 'Departamentos Actualizado Correctamente !'
 
     def get_success_url(self):
-        return reverse('tablaDepartamentos')
+        return reverse('tablaDep')
 
 
 class DepartamentosEliminar(SuccessMessageMixin, DeleteView):
@@ -46,4 +46,4 @@ class DepartamentosEliminar(SuccessMessageMixin, DeleteView):
     success_message = 'Departamentos Eliminado Correctamente !'
 
     def get_success_url(self):
-        return reverse('tablaDepartamentos')
+        return reverse('tablaDep')

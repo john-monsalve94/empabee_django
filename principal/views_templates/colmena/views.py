@@ -22,7 +22,7 @@ class ColmenaCrear(SuccessMessageMixin, CreateView):
     success_message = 'Colmena creado correctamente'
 
     def get_success_url(self):
-        return reverse('tablaColmena')
+        return reverse('tablaCol')
 
 
 class ColmenaDetalle (DetailView):
@@ -36,7 +36,7 @@ class ColmenaActualizar(SuccessMessageMixin, UpdateView):
     success_message = 'Colmena Actualizado Correctamente !'
 
     def get_success_url(self):
-        return reverse('tablaColmena')
+        return reverse('tablaCol')
 
 
 class ColmenaEliminar(SuccessMessageMixin, DeleteView):
@@ -46,4 +46,4 @@ class ColmenaEliminar(SuccessMessageMixin, DeleteView):
     success_message = 'Colmena Eliminado Correctamente !'
 
     def get_success_url(self):
-        return reverse('tablaColmena')
+        return reverse('tablaCol')

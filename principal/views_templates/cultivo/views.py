@@ -22,7 +22,7 @@ class CultivoCrear(SuccessMessageMixin, CreateView):
     success_message = 'Cultivo creado correctamente'
 
     def get_success_url(self):
-        return reverse('tablaCultivo')
+        return reverse('tablaCul')
 
 
 class CultivoDetalle (DetailView):
@@ -36,7 +36,7 @@ class CultivoActualizar(SuccessMessageMixin, UpdateView):
     success_message = 'Cultivo Actualizado Correctamente !'
 
     def get_success_url(self):
-        return reverse('tablaCultivo')
+        return reverse('tablaCul')
 
 
 class CultivoEliminar(SuccessMessageMixin, DeleteView):
@@ -46,4 +46,4 @@ class CultivoEliminar(SuccessMessageMixin, DeleteView):
     success_message = 'Cultivo Eliminado Correctamente !'
 
     def get_success_url(self):
-        return reverse('tablaCultivo')
+        return reverse('tablaCul')
