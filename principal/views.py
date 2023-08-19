@@ -19,13 +19,12 @@ def register(request: HttpRequest):
         'usuario_form': RegistrarUsuario(),
         'persona_form': RegistrarPersona()
     }
-
+    
     if request.method == 'POST':
         usuario_form: RegistrarUsuario = RegistrarUsuario(request.POST)
         persona_form: RegistrarPersona = RegistrarPersona(request.POST)
         if usuario_form.is_valid() and persona_form.is_valid():
             user: User = usuario_form.save()
-
             persona: Persona = persona_form.save(commit=False)
             persona.user = user
             persona.correo = user.email
@@ -36,7 +35,12 @@ def register(request: HttpRequest):
                 password=user.password
             )
             login(request, user)
-
+        else:
+                print("EL ESTADO DE USER",usuario_form.is_valid())
+                print("EL ESTADO DE PERSONA",persona_form.is_valid())
+    
+ 
+    
     return render(request, 'auth/register.html', data)
 
 
